@@ -151,4 +151,18 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="checkUserName" resultType="int" parameterType="string">
+    select count(1) from mmall_user where username = #{userName} //这里count(1) 的count和(1)之间不能有空格
+  </select>
+
+  <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />//Base_Column_List 是该文件上面的 就这样写 不能写select * from 什么的
+    from mmall_user
+    where
+    username = #{userName}
+    and
+    password = #{passWord}
+  </select>
+
 </mapper>
