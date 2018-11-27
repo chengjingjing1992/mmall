@@ -11,8 +11,15 @@
     <!--这个文件是springMVC 的配置-->
 
 
-                <!--这里扫描controller 注解 @controller 加在类上 这个类就变成了一个controller-->
-    <context:component-scan base-package="com.mmall" annotation-config="true"/>
+    <!--这里扫描controller 注解 @controller 加在类上 这个类就变成了一个controller-->
+    <!--<context:component-scan base-package="com.mmall" annotation-config="true"/>-->
+
+    <!--这里的扫描可以扫描到com.mmall包下的@Controller注解 但是不包括@Service注解-->
+    <context:component-scan base-package="com.mmall">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        <!--这一行好像还不能删 但我也不知道为什么-->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+    </context:component-scan>
 
     <mvc:annotation-driven>
         <mvc:message-converters>
@@ -24,9 +31,11 @@
                     </list>
                 </property>
             </bean>
+                                                                     <!--这里理解为配置了一个Jackson插件   返回的  MediaTypes 就是 json  -->
             <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
+                        <!--这里理解为配置了一个Jackson插件   返回的  MediaTypes 就是 json    -->
                         <value>application/json;charset=UTF-8</value>
                     </list>
                 </property>
