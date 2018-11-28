@@ -43,6 +43,12 @@ public class UserController {
 
         return iUserService.register(user);
     }
+    //这是用于校验的接口
+    @RequestMapping(value = "/checkValid.do",method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse checkValid(String value,String type){
+        return iUserService.checkValid(value,type);
+    }
 
 
 }

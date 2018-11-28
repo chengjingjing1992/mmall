@@ -6,4 +6,5 @@ import com.mmall.pojo.User;
 public interface IUserService {// 用字母I开头一看就知道是个接口便于维护
     ServerResponse<User> login(String userName, String passWord);
     ServerResponse register(User user);
+    ServerResponse checkValid(String value,String type);
 }
