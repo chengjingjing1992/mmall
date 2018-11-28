@@ -5,6 +5,7 @@ import com.mmall.common.ServerResponse;
 import com.mmall.dao.UserMapper;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
+import com.mmall.util.MD5Util;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,9 @@ public class UserServiceImpl implements IUserService {
         }
         //注册默认普通用户=0
         user.setRole(Const.COMMON_CUSTOMER);
+
+        //密码进行MD5加密
+        user.setPassword(MD5Util.MD5EncodeUtf8(user.getPassword()));
 
         int a=0;
         try {
