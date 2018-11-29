@@ -50,5 +50,19 @@ public class UserController {
         return iUserService.checkValid(value,type);
     }
 
+    //获取登录用户信息/user/getUserInfo.do
+    @RequestMapping(value = "/getUserInfo.do",method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse<User> getUserInfo(HttpSession session){
+        User user=(User) session.getAttribute(Const.CURRENT_USER);
+        if(user!=null){
+            //返回登录用户的信息
+           return ServerResponse.createBySuccess(user);
+        }
+        return ServerResponse.createByErrorMeg("用户未登录");
+    }
+
+
+
 
 }
