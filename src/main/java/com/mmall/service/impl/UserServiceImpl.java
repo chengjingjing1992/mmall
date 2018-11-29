@@ -120,6 +120,20 @@ public class UserServiceImpl implements IUserService {
 
         return ServerResponse.createBySuccess();
     }
+    @Transactional
+    public ServerResponse getUserByName(String userName){
+        //用户名不存在
+        if(this.checkValid(userName,Const.USERNAME).isSuccess()){
+            return ServerResponse.createByErrorMeg("用户名不存在");
+        }
+
+        User user=userMapper.getUserByName(userName);
+        //如果该用户的question 字段为null或""
+        if(user.getQuestion()==null||"".equals(user.getQuestion().trim())){
+            return  ServerResponse.createByErrorMeg("没有存问题");
+        }
+        return ServerResponse.createBySuccess(user.getQuestion());
+    }
 
 
 }

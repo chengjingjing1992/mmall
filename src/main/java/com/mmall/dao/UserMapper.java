@@ -23,5 +23,7 @@ public interface UserMapper {
 
     User selectLogin(@Param("userName")String userName,@Param("passWord")String passWord);
 
+    User getUserByName(String userName);
+
 
 }

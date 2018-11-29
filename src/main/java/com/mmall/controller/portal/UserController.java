@@ -62,6 +62,21 @@ public class UserController {
         return ServerResponse.createByErrorMeg("用户未登录");
     }
 
+    //忘记密码
+    ///user/forget_get_question.do
+    @RequestMapping(value = "/forgetGetQuestion.do",method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse<User> forgetGetQuestion(String userName){
+        return iUserService.getUserByName(userName);
+    }
+
+//    提交问题答案 /user/forgetCheckAnswer.do
+    @RequestMapping(value = "/forgetCheckAnswer.do",method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse forgetCheckAnswer(String userName,String question,String answer){
+
+        return null;
+    }
 
 
 

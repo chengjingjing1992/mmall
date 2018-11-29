@@ -171,4 +171,12 @@
     password = #{passWord}
   </select>
 
+  <select id="getUserByName" resultMap="BaseResultMap" parameterType="string">
+    select
+    <include refid="Base_Column_List" />
+    from mmall_user
+    where
+    username = #{userName}
+  </select>
+
 </mapper>
