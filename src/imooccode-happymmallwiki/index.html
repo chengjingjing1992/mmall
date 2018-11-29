@@ -1,0 +1,2777 @@
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>文档</title>
+  <link href="./css/semantic/semantic.min.css" rel="stylesheet">
+  <link href="./css/markdown.css" rel="stylesheet">
+  <style>
+    body{padding-top:0;background:#f7f7f7}
+    body>.ui.container{width:100%;padding:0}
+    #project-title{background:#6e6e6e;width:100%;line-height:3.572rem;color:#fff;font-size:1.2rem}
+    #project-title .title-wrap{font-weight:700;padding:0 12px;width:100%;max-width:1366px!important;min-width:900px;margin:0 auto}
+    #project-title .left,#project-title right{display:inline-block}
+    #project-title .right{float:right}
+    #project-title .right .wiki-actions .menu{left:auto;right:0;margin-top:.4em!important}
+    #wiki-preview-container{width:100%;max-width:1366px!important;min-width:900px;padding:0;border:1px solid #e3e9ed;border-top:0}
+    #wiki-preview>.ui.segment{margin-top:0;padding:1rem;padding-left:0;border:0}
+    .hover-places{display:inline-block}
+    #page-detail{width:60%;margin:0 auto}
+    #page-detail .title{font-weight:700;font-size:24px;padding:12px 0;border-bottom:1px solid #ccc}
+    #page-detail .content{margin-top:15px}
+    .content p{word-wrap:break-word}
+    #wiki-parent,#wiki-title,#wikis{display:none}
+    .ui.grid{padding:0!important}
+    #ex-all{cursor:pointer;color:#537c8d}
+  </style>
+</head>
+<body>
+  <div class="ui container">
+    <div id="project-title">
+      <div class="title-wrap">
+        <div class="left">
+          <i class="icon eye"></i>
+          文档预览:
+          happymmallwiki
+        </div>
+        <div class="right">
+          Export by Gitee
+        </div>
+      </div>
+    </div>
+
+    <div class="ui container" id="wiki-preview-container">
+      <div id="wiki-preview">
+        <div class="ui segment">
+          <div id="page-detail" class="markdown-body">
+            <div class='title'>Home</div><div class='content'><p>Welcome to the Git@OSC wiki!</p>
+</div><div class='title'>后台_产品接口</div><div class='content'><p>[MENU]</p>
+
+<hr>
+<h4><a class="anchor" id="1-产品list_1" href="#1-产品list_1"></a>1.产品list</h4>
+<p><a target="_blank" href="http://localhost:8080/manage/product/list.do">http://localhost:8080/manage/product/list.do</a></p>
+
+<p><strong>/manage/product/list.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>pageNum(default=1)
+pageSize(default=10)
+
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "pageNum": 1,
+        "pageSize": 10,
+        "size": 2,
+        "orderBy": null,
+        "startRow": 1,
+        "endRow": 2,
+        "total": 2,
+        "pages": 1,
+        "list": [
+            {
+                "id": 1,
+                "categoryId": 3,
+                "name": "iphone7",
+                "subtitle": "双十一促销",
+                "mainImage": "mainimage.jpg",
+                "status":1,
+                "price": 7199.22
+            },
+            {
+                "id": 2,
+                "categoryId": 2,
+                "name": "oppo R8",
+                "subtitle": "oppo促销进行中",
+                "mainImage": "mainimage.jpg",
+                "status":1,
+                "price": 2999.11
+            }
+        ],
+        "firstPage": 1,
+        "prePage": 0,
+        "nextPage": 0,
+        "lastPage": 1,
+        "isFirstPage": true,
+        "isLastPage": true,
+        "hasPreviousPage": false,
+        "hasNextPage": false,
+        "navigatePages": 8,
+        "navigatepageNums": [
+            1
+        ]
+    }
+}
+
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 10,
+    "msg": "用户未登录,请登录"
+}
+
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="2-产品搜索_1" href="#2-产品搜索_1"></a>2.产品搜索</h4>
+<p><a target="_blank" href="http://localhost:8080/manage/product/search.do?productName=p">http://localhost:8080/manage/product/search.do?productName=p</a></p>
+
+<p><a target="_blank" href="http://localhost:8080/manage/product/search.do?productId=1">http://localhost:8080/manage/product/search.do?productId=1</a></p>
+
+<p><strong>/manage/product/search.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>productName
+productId
+pageNum(default=1)
+pageSize(default=10)
+
+
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "pageNum": 1,
+        "pageSize": 10,
+        "size": 1,
+        "orderBy": null,
+        "startRow": 1,
+        "endRow": 1,
+        "total": 1,
+        "pages": 1,
+        "list": [
+            {
+                "id": 1,
+                "categoryId": 3,
+                "name": "iphone7",
+                "subtitle": "双十一促销",
+                "mainImage": "mainimage.jpg",
+                "price": 7199.22
+            }
+        ],
+        "firstPage": 1,
+        "prePage": 0,
+        "nextPage": 0,
+        "lastPage": 1,
+        "isFirstPage": true,
+        "isLastPage": true,
+        "hasPreviousPage": false,
+        "hasNextPage": false,
+        "navigatePages": 8,
+        "navigatepageNums": [
+            1
+        ]
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 10,
+    "msg": "用户未登录,请登录"
+}
+
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="3-图片上传_1" href="#3-图片上传_1"></a>3.图片上传</h4>
+<p><strong>/manage/product/upload.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>
+&lt;form name="form2" action="/manage/product/upload.do" method="post"  enctype="multipart/form-data"&gt;
+    &lt;input type="file" name="upload_file"&gt;
+    &lt;input type="submit" value="upload"/&gt;
+&lt;/form&gt;
+
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "uri": "e6604558-c0ff-41b9-b6e1-30787a1e3412.jpg",
+        "url": "http://img.happymmall.com/e6604558-c0ff-41b9-b6e1-30787a1e3412.jpg"
+    }
+}
+
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>status!=0的时候
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="4-产品详情_1" href="#4-产品详情_1"></a>4.产品详情</h4>
+<p><a target="_blank" href="http://localhost:8080/manage/product/detail.do?productId=2">http://localhost:8080/manage/product/detail.do?productId=2</a></p>
+
+<p><strong>/manage/product/detail.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>productId
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "id": 2,
+        "categoryId": 2,
+        "parentCategoryId":1,
+        "name": "oppo R8",
+        "subtitle": "oppo促销进行中",
+        "imageHost": "http://img.happymmall.com/",
+        "mainImage": "mainimage.jpg",
+        "subImages": "[\"mmall/aa.jpg\",\"mmall/bb.jpg\",\"mmall/cc.jpg\",\"mmall/dd.jpg\",\"mmall/ee.jpg\"]",
+        "detail": "richtext",
+        "price": 2999.11,
+        "stock": 71,
+        "status": 1,
+        "createTime": "2016-11-20 14:21:53",
+        "updateTime": "2016-11-20 14:21:53"
+    }
+}
+
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "没有权限"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="5-产品上下架_1" href="#5-产品上下架_1"></a>5.产品上下架</h4>
+<p><a target="_blank" href="http://localhost:8080/manage/product/set_sale_status.do?productId=1&amp;status=1">http://localhost:8080/manage/product/set_sale_status.do?productId=1&status=1</a></p>
+
+<p><strong>/manage/product/set_sale_status.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>productId
+status
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": "修改产品状态成功"
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "data": "修改产品状态失败"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="6-新增or更新产品_1" href="#6-新增or更新产品_1"></a>6.新增OR更新产品</h4>
+<p>新增</p>
+
+<p>新增
+<a target="_blank" href="http://localhost:8080/manage/product/save.do?categoryId=1&amp;name=三星洗衣机&amp;subtitle=三星大促销&amp;subImages=test.jpg,11.jpg,2.jpg,3.jpg&amp;detail=detailtext&amp;price=1000&amp;stock=100&amp;status=1">http://localhost:8080/manage/product/save.do?categoryId=1&name=三星洗衣机&subtitle=三星大促销&subImages=test.jpg,11.jpg,2.jpg,3.jpg&detail=detailtext&price=1000&stock=100&status=1</a></p>
+
+<p>更新
+<a target="_blank" href="http://localhost:8080/manage/product/save.do?categoryId=1&amp;name=三星洗衣机&amp;subtitle=三星大促销&amp;subImages=test.jpg&amp;detail=detailtext&amp;price=1000&amp;stock=100&amp;status=1&amp;id=3">http://localhost:8080/manage/product/save.do?categoryId=1&name=三星洗衣机&subtitle=三星大促销&subImages=test.jpg&detail=detailtext&price=1000&stock=100&status=1&id=3</a></p>
+
+<p><strong>/manage/product/save.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>categoryId=1&amp;name=三星洗衣机&amp;subtitle=三星大促销&amp;mainImage=sss.jpg&amp;subImages=test.jpg&amp;detail=detailtext&amp;price=1000&amp;stock=100&amp;status=1&amp;id=3
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": "更新产品成功"
+}
+
+或
+
+
+{
+    "status": 0,
+    "data": "新增产品成功"
+}
+
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "data": "更新产品失败"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="7-富文本上传图片_1" href="#7-富文本上传图片_1"></a>7.富文本上传图片</h4>
+<p><strong>/manage/product/richtext_img_upload.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>&lt;form name="form2" action="/manage/product/upload.do" method="post"  enctype="multipart/form-data"&gt;
+    &lt;input type="file" name="upload_file"&gt;
+    &lt;input type="submit" value="upload"/&gt;
+&lt;/form&gt;
+
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "file_path": "http://img.happymmall.com/5fb239f2-0007-40c1-b8e6-0dc11b22779c.jpg",
+    "msg": "上传成功",
+    "success": true
+}
+
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "success": false,
+    "msg": "error message",
+    "file_path": "[real file path]"
+}
+</pre></div></div>
+<hr>
+</div><div class='title'>后台_用户接口</div><div class='content'><h4><a class="anchor" id="1-后台管理员登录_1" href="#1-后台管理员登录_1"></a>1.后台管理员登录</h4>
+<p><strong>/manage/user/login.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>String username,
+String password
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "id": 12,
+        "username": "aaa",
+        "email": "aaa@163.com",
+        "phone": null,
+        "role": 0,
+        "createTime": 1479048325000,
+        "updateTime": 1479048325000
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "密码错误"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="2-用户列表_1" href="#2-用户列表_1"></a>2.用户列表</h4>
+<p><strong>/manage/user/list.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>pageSize(default=10)
+pageNum(default=1)
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "pageNum": 1,
+        "pageSize": 3,
+        "size": 3,
+        "orderBy": null,
+        "startRow": 1,
+        "endRow": 3,
+        "total": 16,
+        "pages": 6,
+        "list": [
+            {
+                "id":17,
+                "username":"rosen",
+                "password":"",
+                "email":"rosen1@happymmall.com",
+                "phone":"15011111111",
+                "question":"啊哈哈",
+                "answer":"服不服",
+                "role":0,
+                "createTime":1489719093000,
+                "updateTime":1513682138000
+            },
+            {
+                "id":17,
+                "username":"rosen",
+                "password":"",
+                "email":"rosen1@happymmall.com",
+                "phone":"15011111111",
+                "question":"啊哈哈",
+                "answer":"服不服",
+                "role":0,
+                "createTime":1489719093000,
+                "updateTime":1513682138000
+            }
+        ],
+        "firstPage": 1,
+        "prePage": 0,
+        "nextPage": 2,
+        "lastPage": 6,
+        "isFirstPage": true,
+        "isLastPage": false,
+        "hasPreviousPage": false,
+        "hasNextPage": true,
+        "navigatePages": 8,
+        "navigatepageNums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 10,
+  "msg": "用户未登录,请登录"
+}
+
+
+或
+
+{
+  "status": 1,
+  "msg": "没有权限"
+}
+
+
+
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="3-模板_1" href="#3-模板_1"></a>3.模板</h4>
+<p><strong>/REPLACE/.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<hr>
+</div><div class='title'>后台_统计接口</div><div class='content'><hr>
+<h4><a class="anchor" id="1-统计用户-商品-订单数量_1" href="#1-统计用户-商品-订单数量_1"></a>1.统计用户、商品、订单数量</h4>
+<p><strong>/manage/statistic/base_count.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>无
+
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>
+{
+    "status": 0,
+    "data": {
+        userCount: 123,
+        productCount: 456,
+        orderCount: 789
+    }
+}
+
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 10,
+    "msg": "用户未登录,请登录"
+}
+或
+
+{
+    "status": 1,
+    "msg": "出错啦"
+}
+</pre></div></div></div><div class='title'>后台_品类接口</div><div class='content'><p>[MENU]</p>
+
+<hr>
+<h4><a class="anchor" id="1-获取品类子节点-平级-_1" href="#1-获取品类子节点-平级-_1"></a>1.获取品类子节点(平级)</h4>
+<p><a target="_blank" href="http://localhost:8080/manage/category/get_category.do">http://localhost:8080/manage/category/get_category.do</a>
+<a target="_blank" href="http://localhost:8080/manage/category/get_category.do?categoryId=0">http://localhost:8080/manage/category/get_category.do?categoryId=0</a></p>
+
+<p><a target="_blank" href="http://localhost:8080/manage/category/get_category.do?categoryId=2">http://localhost:8080/manage/category/get_category.do?categoryId=2</a></p>
+
+<p><strong>/manage/category/get_category.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>categoryId(default=0)
+
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>
+{
+    "status": 0,
+    "data": [
+        {
+            "id": 2,
+            "parentId": 1,
+            "name": "手机",
+            "status": true,
+            "sortOrder": 3,
+            "createTime": 1479622913000,
+            "updateTime": 1479622913000
+        },
+        {
+            "id": 4,
+            "parentId": 1,
+            "name": "移动座机",
+            "status": true,
+            "sortOrder": 5,
+            "createTime": 1480059936000,
+            "updateTime": 1480491941000
+        }
+    ]
+}
+
+</pre></div></div>
+<p><a target="_blank" href="http://localhost:8080/manage/category/get_category.do?categoryId=19">http://localhost:8080/manage/category/get_category.do?categoryId=19</a></p>
+
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 10,
+    "msg": "用户未登录,请登录"
+}
+或
+
+{
+    "status": 1,
+    "msg": "未找到该品类"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="2-增加节点_1" href="#2-增加节点_1"></a>2.增加节点</h4>
+<p><strong>/manage/category/add_category.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>parentId(default=0)
+categoryName
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "msg": "添加品类成功"
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status":1,
+    "msg": "添加品类失败"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="3-修改品类名字_1" href="#3-修改品类名字_1"></a>3.修改品类名字</h4>
+<p><a target="_blank" href="http://localhost:8080/manage/category/set_category_name.do?categoryId=999&amp;categoryName=%E5%98%BB%E5%98%BB">http://localhost:8080/manage/category/set_category_name.do?categoryId=999&categoryName=%E5%98%BB%E5%98%BB</a>
+<a target="_blank" href="http://localhost:8080/manage/category/set_category_name.do?categoryId=1&amp;categoryName=%E5%98%BB%E5%98%BB">http://localhost:8080/manage/category/set_category_name.do?categoryId=1&categoryName=%E5%98%BB%E5%98%BB</a></p>
+
+<p><strong>/manage/category/set_category_name.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>categoryId
+categoryName
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "msg": "更新品类名字成功"
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "更新品类名字失败"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="4-获取当前分类id及递归子节点categoryid_1" href="#4-获取当前分类id及递归子节点categoryid_1"></a>4.获取当前分类id及递归子节点categoryId</h4>
+<p><a target="_blank" href="http://localhost:8080/manage/category/get_deep_category.do?categoryId=100001">http://localhost:8080/manage/category/get_deep_category.do?categoryId=100001</a></p>
+
+<p><strong>/manage/category/get_deep_category.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>categoryId
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": [
+        100009,
+        100010,
+        100001,
+        100006,
+        100007,
+        100008
+    ]
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "无权限"
+}
+</pre></div></div>
+<hr>
+</div><div class='title'>后台_订单接口</div><div class='content'><p>[MENU]</p>
+
+<hr>
+<h4><a class="anchor" id="1-订单list_1" href="#1-订单list_1"></a>1.订单List</h4>
+<p><a target="_blank" href="http://localhost:8080/manage/order/list.do?pageSize=3">http://localhost:8080/manage/order/list.do?pageSize=3</a></p>
+
+<p><strong>/manage/order/list.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>pageSize(default=10)
+pageNum(default=1)
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 0,
+  "data": {
+    "pageNum": 1,
+    "pageSize": 3,
+    "size": 3,
+    "orderBy": null,
+    "startRow": 1,
+    "endRow": 3,
+    "total": 16,
+    "pages": 6,
+    "list": [
+      {
+        "orderNo": 1485158676346,
+        "payment": 2999.11,
+        "paymentType": 1,
+        "paymentTypeDesc": "在线支付",
+        "postage": 0,
+        "status": 10,
+        "statusDesc": "未支付",
+        "paymentTime": "2017-02-11 12:27:18",
+        "sendTime": "2017-02-11 12:27:18",
+        "endTime": "2017-02-11 12:27:18",
+        "closeTime": "2017-02-11 12:27:18",
+        "createTime": "2017-01-23 16:04:36",
+        "orderItemVoList": [
+          {
+            "orderNo": 1485158676346,
+            "productId": 2,
+            "productName": "oppo R8",
+            "productImage": "mainimage.jpg",
+            "currentUnitPrice": 2999.11,
+            "quantity": 1,
+            "totalPrice": 2999.11,
+            "createTime": "2017-01-23 16:04:36"
+          }
+        ],
+        "imageHost": "http://img.happymmall.com/",
+        "shippingId": 5,
+        "shippingVo": null
+      },
+      {
+        "orderNo": 1485158675516,
+        "payment": 2999.11,
+        "paymentType": 1,
+        "paymentTypeDesc": "在线支付",
+        "postage": 0,
+        "status": 10,
+        "statusDesc": "未支付",
+        "paymentTime": "2017-02-11 12:27:18",
+        "sendTime": "2017-02-11 12:27:18",
+        "endTime": "2017-02-11 12:27:18",
+        "closeTime": "2017-02-11 12:27:18",
+        "createTime": "2017-01-23 16:04:35",
+        "orderItemVoList": [
+          {
+            "orderNo": 1485158675516,
+            "productId": 2,
+            "productName": "oppo R8",
+            "productImage": "mainimage.jpg",
+            "currentUnitPrice": 2999.11,
+            "quantity": 1,
+            "totalPrice": 2999.11,
+            "createTime": "2017-01-23 16:04:35"
+          }
+        ],
+        "imageHost": "http://img.happymmall.com/",
+        "shippingId": 5,
+        "receiverName": "geely",
+        "shippingVo": null
+      },
+      {
+        "orderNo": 1485158675316,
+        "payment": 2999.11,
+        "paymentType": 1,
+        "paymentTypeDesc": "在线支付",
+        "postage": 0,
+        "status": 10,
+        "statusDesc": "未支付",
+        "paymentTime": "2017-02-11 12:27:18",
+        "sendTime": "2017-02-11 12:27:18",
+        "endTime": "2017-02-11 12:27:18",
+        "closeTime": "2017-02-11 12:27:18",
+        "createTime": "2017-01-23 16:04:35",
+        "orderItemVoList": [
+          {
+            "orderNo": 1485158675316,
+            "productId": 2,
+            "productName": "oppo R8",
+            "productImage": "mainimage.jpg",
+            "currentUnitPrice": 2999.11,
+            "quantity": 1,
+            "totalPrice": 2999.11,
+            "createTime": "2017-01-23 16:04:35"
+          }
+        ],
+        "imageHost": "http://img.happymmall.com/",
+        "shippingId": 5,
+        "receiverName": "geely",
+        "shippingVo": null
+      }
+    ],
+    "firstPage": 1,
+    "prePage": 0,
+    "nextPage": 2,
+    "lastPage": 6,
+    "isFirstPage": true,
+    "isLastPage": false,
+    "hasPreviousPage": false,
+    "hasNextPage": true,
+    "navigatePages": 8,
+    "navigatepageNums": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 10,
+  "msg": "用户未登录,请登录"
+}
+
+
+或
+
+{
+  "status": 1,
+  "msg": "没有权限"
+}
+
+
+
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="2-按订单号查询_1" href="#2-按订单号查询_1"></a>2.按订单号查询</h4>
+<p><a target="_blank" href="http://localhost:8080/manage/order/search.do?orderNo=1480515829406">http://localhost:8080/manage/order/search.do?orderNo=1480515829406</a></p>
+
+<p><strong>/manage/order/search.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>orderNo
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 0,
+  "data": {
+    "pageNum": 1,
+    "pageSize": 3,
+    "size": 3,
+    "orderBy": null,
+    "startRow": 1,
+    "endRow": 3,
+    "total": 16,
+    "pages": 6,
+    "list": [
+      {
+        "orderNo": 1485158676346,
+        "payment": 2999.11,
+        "paymentType": 1,
+        "paymentTypeDesc": "在线支付",
+        "postage": 0,
+        "status": 10,
+        "statusDesc": "未支付",
+        "paymentTime": "2017-02-11 12:27:18",
+        "sendTime": "2017-02-11 12:27:18",
+        "endTime": "2017-02-11 12:27:18",
+        "closeTime": "2017-02-11 12:27:18",
+        "createTime": "2017-01-23 16:04:36",
+        "orderItemVoList": [
+          {
+            "orderNo": 1485158676346,
+            "productId": 2,
+            "productName": "oppo R8",
+            "productImage": "mainimage.jpg",
+            "currentUnitPrice": 2999.11,
+            "quantity": 1,
+            "totalPrice": 2999.11,
+            "createTime": "2017-01-23 16:04:36"
+          }
+        ],
+        "imageHost": "http://img.happymmall.com/",
+        "shippingId": 5,
+        "shippingVo": null
+      },
+      {
+        "orderNo": 1485158675516,
+        "payment": 2999.11,
+        "paymentType": 1,
+        "paymentTypeDesc": "在线支付",
+        "postage": 0,
+        "status": 10,
+        "statusDesc": "未支付",
+        "paymentTime": "2017-02-11 12:27:18",
+        "sendTime": "2017-02-11 12:27:18",
+        "endTime": "2017-02-11 12:27:18",
+        "closeTime": "2017-02-11 12:27:18",
+        "createTime": "2017-01-23 16:04:35",
+        "orderItemVoList": [
+          {
+            "orderNo": 1485158675516,
+            "productId": 2,
+            "productName": "oppo R8",
+            "productImage": "mainimage.jpg",
+            "currentUnitPrice": 2999.11,
+            "quantity": 1,
+            "totalPrice": 2999.11,
+            "createTime": "2017-01-23 16:04:35"
+          }
+        ],
+        "imageHost": "http://img.happymmall.com/",
+        "shippingId": 5,
+        "receiverName": "geely",
+        "shippingVo": null
+      },
+      {
+        "orderNo": 1485158675316,
+        "payment": 2999.11,
+        "paymentType": 1,
+        "paymentTypeDesc": "在线支付",
+        "postage": 0,
+        "status": 10,
+        "statusDesc": "未支付",
+        "paymentTime": "2017-02-11 12:27:18",
+        "sendTime": "2017-02-11 12:27:18",
+        "endTime": "2017-02-11 12:27:18",
+        "closeTime": "2017-02-11 12:27:18",
+        "createTime": "2017-01-23 16:04:35",
+        "orderItemVoList": [
+          {
+            "orderNo": 1485158675316,
+            "productId": 2,
+            "productName": "oppo R8",
+            "productImage": "mainimage.jpg",
+            "currentUnitPrice": 2999.11,
+            "quantity": 1,
+            "totalPrice": 2999.11,
+            "createTime": "2017-01-23 16:04:35"
+          }
+        ],
+        "imageHost": "http://img.happymmall.com/",
+        "shippingId": 5,
+        "receiverName": "geely",
+        "shippingVo": null
+      }
+    ],
+    "firstPage": 1,
+    "prePage": 0,
+    "nextPage": 2,
+    "lastPage": 6,
+    "isFirstPage": true,
+    "isLastPage": false,
+    "hasPreviousPage": false,
+    "hasNextPage": true,
+    "navigatePages": 8,
+    "navigatepageNums": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 1,
+  "msg": "没有找到订单"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="3-订单详情_1" href="#3-订单详情_1"></a>3.订单详情</h4>
+<p><a target="_blank" href="http://localhost:8080/manage/order/detail.do?orderNo=1480515829406">http://localhost:8080/manage/order/detail.do?orderNo=1480515829406</a></p>
+
+<p><strong>/manage/order/detail.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>orderNo
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 0,
+  "data": {
+    "orderNo": 1480515829406,
+    "payment": 30000.00,
+    "paymentType": 1,
+    "paymentTypeDesc": "在线支付",
+    "postage": 0,
+    "status": 10,
+    "statusDesc": "未支付",
+    "paymentTime": "",
+    "sendTime": "",
+    "endTime": "",
+    "closeTime": "",
+    "createTime": "2016-11-30 22:23:49",
+    "orderItemVoList": [
+      {
+        "orderNo": 1480515829406,
+        "productId": 1,
+        "productName": "iphone7",
+        "productImage": "mainimage.jpg",
+        "currentUnitPrice": 10000.00,
+        "quantity": 1,
+        "totalPrice": 10000.00,
+        "createTime": "2016-11-30 22:23:49"
+      },
+      {
+        "orderNo": 1480515829406,
+        "productId": 2,
+        "productName": "oppo R8",
+        "productImage": "mainimage.jpg",
+        "currentUnitPrice": 20000.00,
+        "quantity": 1,
+        "totalPrice": 20000.00,
+        "createTime": "2016-11-30 22:23:49"
+      }
+    ],
+    "imageHost": "http://img.happymmall.com/",
+    "shippingId": 3,
+    "receiverName": "geely",
+    "shippingVo": {
+      "receiverName": "geely",
+      "receiverPhone": "0100",
+      "receiverMobile": "186",
+      "receiverProvince": "北京",
+      "receiverCity": "北京",
+      "receiverDistrict": "昌平区",
+      "receiverAddress": "矩阵小区",
+      "receiverZip": "100000"
+    }
+  }
+}
+
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 1,
+  "msg": "没有找到订单"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="4-订单发货_1" href="#4-订单发货_1"></a>4.订单发货</h4>
+<p><a target="_blank" href="http://localhost:8080/manage/order/send_goods.do?orderNo=1480515829406">http://localhost:8080/manage/order/send_goods.do?orderNo=1480515829406</a></p>
+
+<p><strong>/manage/order/send_goods.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>orderNo
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 0,
+  "data": "发货成功"
+}
+
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 1,
+  "msg": "发货失败"
+}
+</pre></div></div>
+<hr>
+</div><div class='title'>门户_支付接口</div><div class='content'><p>[MENU]</p>
+
+<hr>
+<h4><a class="anchor" id="1-支付_1" href="#1-支付_1"></a>1.支付</h4>
+<p><strong>/order/pay.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/order/pay.do?orderNo=1485158676346">http://localhost:8080/order/pay.do?orderNo=1485158676346</a></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>orderNo
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "orderNo": "1485158676346",
+        "qrPath": "http://img.happymmall.com/qr-1492329044075.png"
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "支付宝生成订单失败"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="2-查询订单支付状态_1" href="#2-查询订单支付状态_1"></a>2.查询订单支付状态</h4>
+<p><strong>/order/query_order_pay_status.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/order/query_order_pay_status.do?orderNo=1485158676346">http://localhost:8080/order/query_order_pay_status.do?orderNo=1485158676346</a></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>orderNo
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": true
+}
+
+
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "该用户并没有该订单,查询无效"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="3-支付宝回调_1" href="#3-支付宝回调_1"></a>3.支付宝回调</h4>
+<p>参考支付宝回调文档：
+<a target="_blank" href="https://support.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.mFogPC&amp;treeId=193&amp;articleId=103296&amp;docType=1">https://support.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.mFogPC&treeId=193&articleId=103296&docType=1</a></p>
+
+<p><strong>/order/alipay_callback.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>HttpServletRequest
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>success
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>failed
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="0-模板_1" href="#0-模板_1"></a>0.模板</h4>
+<p><strong>/REPLACE/.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<hr>
+</div><div class='title'>门户_收货地址接口</div><div class='content'><p>[MENU]</p>
+<h4><a class="anchor" id="1-添加地址_1" href="#1-添加地址_1"></a>1.添加地址</h4>
+<p><strong>/shipping/add.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/shipping/add.do?userId=1&amp;receiverName=geely&amp;receiverPhone=010&amp;receiverMobile=18688888888&amp;receiverProvince=%E5%8C%97%E4%BA%AC&amp;receiverCity=%E5%8C%97%E4%BA%AC%E5%B8%82&amp;receiverAddress=%E4%B8%AD%E5%85%B3%E6%9D%91&amp;receiverZip=100000">http://localhost:8080/shipping/add.do?userId=1&receiverName=geely&receiverPhone=010&receiverMobile=18688888888&receiverProvince=%E5%8C%97%E4%BA%AC&receiverCity=%E5%8C%97%E4%BA%AC%E5%B8%82&receiverAddress=%E4%B8%AD%E5%85%B3%E6%9D%91&receiverZip=100000</a></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>userId=1
+receiverName=geely
+receiverPhone=010
+receiverMobile=18688888888
+receiverProvince=北京
+receiverCity=北京市
+receiverAddress=中关村
+receiverZip=100000
+
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "msg": "新建地址成功",
+    "data": {
+        "shippingId": 28
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "新建地址失败"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="2-删除地址_1" href="#2-删除地址_1"></a>2.删除地址</h4>
+<p><strong>/shipping/del.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>shippingId
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "msg": "删除地址成功"
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "删除地址失败"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="3-登录状态更新地址_1" href="#3-登录状态更新地址_1"></a>3.登录状态更新地址</h4>
+<p><strong>/shipping/update.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/shipping/update.do?id=5&amp;receiverName=AAA&amp;receiverPhone=010&amp;receiverMobile=18688888888&amp;receiverProvince=%E5%8C%97%E4%BA%AC&amp;receiverCity=%E5%8C%97%E4%BA%AC%E5%B8%82&amp;receiverDistrict=%E6%B5%B7%E6%B7%80%E5%8C%BA&amp;receiverAddress=%E4%B8%AD%E5%85%B3%E6%9D%91&amp;receiverZip=100000">http://localhost:8080/shipping/update.do?id=5&receiverName=AAA&receiverPhone=010&receiverMobile=18688888888&receiverProvince=%E5%8C%97%E4%BA%AC&receiverCity=%E5%8C%97%E4%BA%AC%E5%B8%82&receiverDistrict=%E6%B5%B7%E6%B7%80%E5%8C%BA&receiverAddress=%E4%B8%AD%E5%85%B3%E6%9D%91&receiverZip=100000</a></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>id=1
+receiverName=geely
+receiverPhone=010
+receiverMobile=18688888888
+receiverProvince=北京
+receiverCity=北京市
+receiverAddress=中关村
+receiverZip=100000
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "msg": "更新地址成功"
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "更新地址失败"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="4-选中查看具体的地址_1" href="#4-选中查看具体的地址_1"></a>4.选中查看具体的地址</h4>
+<p><strong>/shipping/select.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>shippingId
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "id": 4,
+        "userId": 13,
+        "receiverName": "geely",
+        "receiverPhone": "010",
+        "receiverMobile": "18688888888",
+        "receiverProvince": "北京",
+        "receiverCity": "北京市",
+        "receiverAddress": "中关村",
+        "receiverZip": "100000",
+        "createTime": 1485066385000,
+        "updateTime": 1485066385000
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "请登录之后查询"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="5-地址列表_1" href="#5-地址列表_1"></a>5.地址列表</h4>
+<p><strong>/shipping/list.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/shipping/list.do">http://localhost:8080/shipping/list.do</a></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>pageNum(默认1),pageSize(默认10)
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "pageNum": 1,
+        "pageSize": 10,
+        "size": 2,
+        "orderBy": null,
+        "startRow": 1,
+        "endRow": 2,
+        "total": 2,
+        "pages": 1,
+        "list": [
+            {
+                "id": 4,
+                "userId": 13,
+                "receiverName": "geely",
+                "receiverPhone": "010",
+                "receiverMobile": "18688888888",
+                "receiverProvince": "北京",
+                "receiverCity": "北京市",
+                "receiverAddress": "中关村",
+                "receiverZip": "100000",
+                "createTime": 1485066385000,
+                "updateTime": 1485066385000
+            },
+            {
+                "id": 5,
+                "userId": 13,
+                "receiverName": "AAA",
+                "receiverPhone": "010",
+                "receiverMobile": "18688888888",
+                "receiverProvince": "北京",
+                "receiverCity": "北京市",
+                "receiverAddress": "中关村",
+                "receiverZip": "100000",
+                "createTime": 1485066392000,
+                "updateTime": 1485075875000
+            }
+        ],
+        "firstPage": 1,
+        "prePage": 0,
+        "nextPage": 0,
+        "lastPage": 1,
+        "isFirstPage": true,
+        "isLastPage": true,
+        "hasPreviousPage": false,
+        "hasNextPage": false,
+        "navigatePages": 8,
+        "navigatepageNums": [
+            1
+        ]
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "请登录之后查询"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="模板_3" href="#模板_3"></a>模板</h4>
+<p><strong>/product/.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<hr>
+</div><div class='title'>门户_用户接口</div><div class='content'><p>[MENU]</p>
+<h4><a class="anchor" id="1-登录_1" href="#1-登录_1"></a>1.登录</h4>
+<p><strong>/user/login.do</strong>  post(代码需要post方式请求),开放get，方便调试</p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>username,password
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "密码错误"
+}
+</pre></div></div>
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "id": 12,
+        "username": "aaa",
+        "email": "aaa@163.com",
+        "phone": null,
+        "role": 0,
+        "createTime": 1479048325000,
+        "updateTime": 1479048325000
+    }
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="2-注册_1" href="#2-注册_1"></a>2.注册</h4>
+<p><strong>/user/register.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>username,password,email,phone,question,answer
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "msg": "校验成功"
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "用户已存在"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="3-检查用户名是否有效_1" href="#3-检查用户名是否有效_1"></a>3.检查用户名是否有效</h4>
+<p><strong>/user/check_valid.do</strong></p>
+
+<p>/check_valid.do?str=admin&amp;type=username就是检查用户名。</p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>str,type
+str可以是用户名也可以是email。对应的type是username和email
+
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "msg": "校验成功"
+}
+
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "用户已存在"
+}
+
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="4-获取登录用户信息_1" href="#4-获取登录用户信息_1"></a>4.获取登录用户信息</h4>
+<p><strong>/user/get_user_info.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>无参数
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "id": 12,
+        "username": "aaa",
+        "email": "aaa@163.com",
+        "phone": null,
+        "role": 0,
+        "createTime": 1479048325000,
+        "updateTime": 1479048325000
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "用户未登录,无法获取当前用户信息"
+}
+
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="5-忘记密码_1" href="#5-忘记密码_1"></a>5.忘记密码</h4>
+<p><strong>/user/forget_get_question.do</strong></p>
+
+<p>localhost:8080/user/forget_get_question.do?username=geely</p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>username
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": "这里是问题"
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "该用户未设置找回密码问题"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="6-提交问题答案_1" href="#6-提交问题答案_1"></a>6.提交问题答案</h4>
+<p><strong>/user/forget_check_answer.do</strong></p>
+
+<p>localhost:8080/user/forget_check_answer.do?username=aaa&amp;question=aa&amp;answer=sss</p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>username,question,answer
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>正确的返回值里面有一个token，修改密码的时候需要用这个。传递给下一个接口</p>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": "531ef4b4-9663-4e6d-9a20-fb56367446a5"
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "问题答案错误"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="7-忘记密码的重设密码_1" href="#7-忘记密码的重设密码_1"></a>7.忘记密码的重设密码</h4>
+<p><strong>/user/forget_reset_password.do</strong></p>
+
+<p>localhost:8080/user/forget_reset_password.do?username=aaa&amp;passwordNew=xxx&amp;forgetToken=531ef4b4-9663-4e6d-9a20-fb56367446a5</p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>username,passwordNew,forgetToken
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "msg": "修改密码成功"
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "修改密码操作失效"
+}
+</pre></div></div>
+<p>或</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "token已经失效"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="8-登录中状态重置密码_1" href="#8-登录中状态重置密码_1"></a>8.登录中状态重置密码</h4>
+<p><strong>/user/reset_password.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>passwordOld,passwordNew
+
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "msg": "修改密码成功"
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "旧密码输入错误"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="9-登录状态更新个人信息_1" href="#9-登录状态更新个人信息_1"></a>9.登录状态更新个人信息</h4>
+<p><strong>/user/update_information.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>email,phone,question,answer
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "msg": "更新个人信息成功"
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "用户未登录"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="10-获取当前登录用户的详细信息-并强制登录_1" href="#10-获取当前登录用户的详细信息-并强制登录_1"></a>10.获取当前登录用户的详细信息，并强制登录</h4>
+<p><strong>/user/get_information.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>无参数
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "id": 1,
+        "username": "admin",
+        "password": "",
+        "email": "admin@163.com",
+        "phone": "13800138000",
+        "question": "question",
+        "answer": "answer",
+        "role": 1,
+        "createTime": 1478422605000,
+        "updateTime": 1491305256000
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 10,
+    "msg": "用户未登录,无法获取当前用户信息,status=10,强制登录"
+}
+
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="11-退出登录_1" href="#11-退出登录_1"></a>11.退出登录</h4>
+<p><strong>/user/logout.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>无
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "msg": "退出成功"
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "服务端异常"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="模板_4" href="#模板_4"></a>模板</h4>
+<p><strong>/user/.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<hr>
+</div><div class='title'>门户_订单接口</div><div class='content'><p>[MENU]</p>
+
+<hr>
+<h4><a class="anchor" id="1-创建订单_1" href="#1-创建订单_1"></a>1.创建订单</h4>
+<p><strong>/order/create.do</strong></p>
+
+<p>引用已存在的收货地址id
+<a target="_blank" href="http://localhost:8080/order/create.do?shippingId=5">http://localhost:8080/order/create.do?shippingId=5</a></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>shippingId
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "orderNo": 1485158223095,
+        "payment": 2999.11,
+        "paymentType": 1,
+        "postage": 0,
+        "status": 10,
+        "paymentTime": null,
+        "sendTime": null,
+        "endTime": null,
+        "closeTime": null,
+        "createTime": 1485158223095,
+        "orderItemVoList": [
+            {
+                "orderNo": 1485158223095,
+                "productId": 2,
+                "productName": "oppo R8",
+                "productImage": "mainimage.jpg",
+                "currentUnitPrice": 2999.11,
+                "quantity": 1,
+                "totalPrice": 2999.11,
+                "createTime": null
+            }
+        ],
+        "shippingId": 5,
+        "shippingVo": null
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "创建订单失败"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="2-获取订单的商品信息_1" href="#2-获取订单的商品信息_1"></a>2.获取订单的商品信息</h4>
+<p><strong>/order/get_order_cart_product.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/order/get_order_cart_product.do">http://localhost:8080/order/get_order_cart_product.do</a></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>无
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "orderItemVoList": [
+            {
+                "orderNo": null,
+                "productId": 1,
+                "productName": "iphone7",
+                "productImage": "mmall/aa.jpg",
+                "currentUnitPrice": 7999,
+                "quantity": 10,
+                "totalPrice": 79990,
+                "createTime": ""
+            }
+        ],
+        "imageHost": "http://img.happymmall.com/",
+        "productTotalPrice": 79990
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "用户未登录"
+}
+</pre></div></div><h4><a class="anchor" id="3-订单list_1" href="#3-订单list_1"></a>3.订单List</h4>
+<p><a target="_blank" href="http://localhost:8080/order/list.do?pageSize=3">http://localhost:8080/order/list.do?pageSize=3</a></p>
+
+<p><strong>/order/list.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>pageSize(default=10)
+pageNum(default=1)
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 0,
+  "data": {
+    "pageNum": 1,
+    "pageSize": 3,
+    "size": 3,
+    "orderBy": null,
+    "startRow": 1,
+    "endRow": 3,
+    "total": 16,
+    "pages": 6,
+    "list": [
+      {
+        "orderNo": 1485158676346,
+        "payment": 2999.11,
+        "paymentType": 1,
+        "paymentTypeDesc": "在线支付",
+        "postage": 0,
+        "status": 10,
+        "statusDesc": "未支付",
+        "paymentTime": "2017-02-11 12:27:18",
+        "sendTime": "2017-02-11 12:27:18",
+        "endTime": "2017-02-11 12:27:18",
+        "closeTime": "2017-02-11 12:27:18",
+        "createTime": "2017-01-23 16:04:36",
+        "orderItemVoList": [
+          {
+            "orderNo": 1485158676346,
+            "productId": 2,
+            "productName": "oppo R8",
+            "productImage": "mainimage.jpg",
+            "currentUnitPrice": 2999.11,
+            "quantity": 1,
+            "totalPrice": 2999.11,
+            "createTime": "2017-01-23 16:04:36"
+          }
+        ],
+        "imageHost": "http://img.happymmall.com/",
+        "shippingId": 5,
+        "receiverName": "geely",
+        "shippingVo": null
+      },
+      {
+        "orderNo": 1485158675516,
+        "payment": 2999.11,
+        "paymentType": 1,
+        "paymentTypeDesc": "在线支付",
+        "postage": 0,
+        "status": 10,
+        "statusDesc": "未支付",
+        "paymentTime": "2017-02-11 12:27:18",
+        "sendTime": "2017-02-11 12:27:18",
+        "endTime": "2017-02-11 12:27:18",
+        "closeTime": "2017-02-11 12:27:18",
+        "createTime": "2017-01-23 16:04:35",
+        "orderItemVoList": [
+          {
+            "orderNo": 1485158675516,
+            "productId": 2,
+            "productName": "oppo R8",
+            "productImage": "mainimage.jpg",
+            "currentUnitPrice": 2999.11,
+            "quantity": 1,
+            "totalPrice": 2999.11,
+            "createTime": "2017-01-23 16:04:35"
+          }
+        ],
+        "imageHost": "http://img.happymmall.com/",
+        "shippingId": 5,
+        "receiverName": "geely",
+        "shippingVo": null
+      },
+      {
+        "orderNo": 1485158675316,
+        "payment": 2999.11,
+        "paymentType": 1,
+        "paymentTypeDesc": "在线支付",
+        "postage": 0,
+        "status": 10,
+        "statusDesc": "未支付",
+        "paymentTime": "2017-02-11 12:27:18",
+        "sendTime": "2017-02-11 12:27:18",
+        "endTime": "2017-02-11 12:27:18",
+        "closeTime": "2017-02-11 12:27:18",
+        "createTime": "2017-01-23 16:04:35",
+        "orderItemVoList": [
+          {
+            "orderNo": 1485158675316,
+            "productId": 2,
+            "productName": "oppo R8",
+            "productImage": "mainimage.jpg",
+            "currentUnitPrice": 2999.11,
+            "quantity": 1,
+            "totalPrice": 2999.11,
+            "createTime": "2017-01-23 16:04:35"
+          }
+        ],
+        "imageHost": "http://img.happymmall.com/",
+        "shippingId": 5,
+        "receiverName": "geely",
+        "shippingVo": null
+      }
+    ],
+    "firstPage": 1,
+    "prePage": 0,
+    "nextPage": 2,
+    "lastPage": 6,
+    "isFirstPage": true,
+    "isLastPage": false,
+    "hasPreviousPage": false,
+    "hasNextPage": true,
+    "navigatePages": 8,
+    "navigatepageNums": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 10,
+  "msg": "用户未登录,请登录"
+}
+
+
+或
+
+{
+  "status": 1,
+  "msg": "没有权限"
+}
+
+
+
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="4-订单详情detail_1" href="#4-订单详情detail_1"></a>4.订单详情detail</h4>
+<p><a target="_blank" href="http://localhost:8080/order/detail.do?orderNo=1480515829406">http://localhost:8080/order/detail.do?orderNo=1480515829406</a></p>
+
+<p><strong>/order/detail.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>orderNo
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 0,
+  "data": {
+    "orderNo": 1480515829406,
+    "payment": 30000.00,
+    "paymentType": 1,
+    "paymentTypeDesc": "在线支付",
+    "postage": 0,
+    "status": 10,
+    "statusDesc": "未支付",
+    "paymentTime": "",
+    "sendTime": "",
+    "endTime": "",
+    "closeTime": "",
+    "createTime": "2016-11-30 22:23:49",
+    "orderItemVoList": [
+      {
+        "orderNo": 1480515829406,
+        "productId": 1,
+        "productName": "iphone7",
+        "productImage": "mainimage.jpg",
+        "currentUnitPrice": 10000.00,
+        "quantity": 1,
+        "totalPrice": 10000.00,
+        "createTime": "2016-11-30 22:23:49"
+      },
+      {
+        "orderNo": 1480515829406,
+        "productId": 2,
+        "productName": "oppo R8",
+        "productImage": "mainimage.jpg",
+        "currentUnitPrice": 20000.00,
+        "quantity": 1,
+        "totalPrice": 20000.00,
+        "createTime": "2016-11-30 22:23:49"
+      }
+    ],
+    "imageHost": "http://img.happymmall.com/",
+    "shippingId": 3,
+    "receiverName": "geely",
+    "shippingVo": {
+      "receiverName": "geely",
+      "receiverPhone": "0100",
+      "receiverMobile": "186",
+      "receiverProvince": "北京",
+      "receiverCity": "北京",
+      "receiverDistrict": "昌平区",
+      "receiverAddress": "矩阵小区",
+      "receiverZip": "100000"
+    }
+  }
+}
+
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 1,
+  "msg": "没有找到订单"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="5-取消订单_1" href="#5-取消订单_1"></a>5.取消订单</h4>
+<p><a target="_blank" href="http://localhost:8080/order/cancel.do?orderNo=1480515829406">http://localhost:8080/order/cancel.do?orderNo=1480515829406</a></p>
+
+<p><strong>/order/cancel.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>orderNo
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 0
+}
+
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 1,
+  "msg": "该用户没有此订单"
+}
+
+或
+{
+  "status": 1,
+  "msg": "此订单已付款，无法被取消"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="5-模板_1" href="#5-模板_1"></a>5.模板</h4>
+<p><strong>/REPLACE/.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<hr>
+</div><div class='title'>门户_购物车接口</div><div class='content'><p>[MENU]</p>
+<h4><a class="anchor" id="1-购物车list列表_1" href="#1-购物车list列表_1"></a>1.购物车List列表</h4>
+<p><strong>/cart/list.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/cart/list.do">http://localhost:8080/cart/list.do</a></p>
+
+<p>注意点：</p>
+
+<ol class="task-list">
+<li>需要先登录,所有的密码都是123</li>
+<li>NEED_LOGIN(10, "NEED_LOGIN"),//需要登录的错误编码</li>
+<li>价格的单位是元,保留小数后2位</li>
+</ol>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>无参数,需要登录状态
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>
+{
+    "status": 0,
+    "data": {
+        "cartProductVoList": [
+            {
+                "id": 1,
+                "userId": 13,
+                "productId": 1,
+                "quantity": 1,
+                "productName": "iphone7",
+                "productSubtitle": "双十一促销",
+                "productMainImage": "mainimage.jpg",
+                "productPrice": 7199.22,
+                "productStatus": 1,
+                "productTotalPrice": 7199.22,
+                "productStock": 86,
+                "productChecked": 1,
+                "limitQuantity": "LIMIT_NUM_SUCCESS"
+            },
+            {
+                "id": 2,
+                "userId": 13,
+                "productId": 2,
+                "quantity": 1,
+                "productName": "oppo R8",
+                "productSubtitle": "oppo促销进行中",
+                "productMainImage": "mainimage.jpg",
+                "productPrice": 2999.11,
+                "productStatus": 1,
+                "productTotalPrice": 2999.11,
+                "productStock": 86,
+                "productChecked": 1,
+                "limitQuantity": "LIMIT_NUM_SUCCESS"
+            }
+        ],
+        "allChecked": true,
+        "cartTotalPrice": 10198.33
+    }
+}
+
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 10,
+    "msg": "用户未登录,请登录"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="2-购物车添加商品_1" href="#2-购物车添加商品_1"></a>2.购物车添加商品</h4>
+<p><strong>/cart/add.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/cart/add.do?productId=1&amp;count=10">http://localhost:8080/cart/add.do?productId=1&count=10</a></p>
+
+<p>请注意这个字段，超过数量会返回这样的标识"limitQuantity"</p>
+
+<p>失败的：LIMIT_NUM_FAIL
+成功的：LIMIT_NUM_SUCCESS</p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>productId,count
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "cartProductVoList": [
+            {
+                "id": 1,
+                "userId": 13,
+                "productId": 1,
+                "quantity": 12,
+                "productName": "iphone7",
+                "productSubtitle": "双十一促销",
+                "productMainImage": "mainimage.jpg",
+                "productPrice": 7199.22,
+                "productStatus": 1,
+                "productTotalPrice": 86390.64,
+                "productStock": 86,
+                "productChecked": 1,
+                "limitQuantity": "LIMIT_NUM_SUCCESS"
+            },
+            {
+                "id": 2,
+                "userId": 13,
+                "productId": 2,
+                "quantity": 1,
+                "productName": "oppo R8",
+                "productSubtitle": "oppo促销进行中",
+                "productMainImage": "mainimage.jpg",
+                "productPrice": 2999.11,
+                "productStatus": 1,
+                "productTotalPrice": 2999.11,
+                "productStock": 86,
+                "productChecked": 1,
+                "limitQuantity": "LIMIT_NUM_SUCCESS"
+            }
+        ],
+        "allChecked": true,
+        "cartTotalPrice": 89389.75
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 10,
+    "msg": "用户未登录,请登录"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="3-更新购物车某个产品数量_1" href="#3-更新购物车某个产品数量_1"></a>3.更新购物车某个产品数量</h4>
+<p><strong>/cart/update.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/cart/update.do?productId=1&amp;count=2">http://localhost:8080/cart/update.do?productId=1&count=2</a></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>productId,count
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>响应同2</p>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "cartProductVoList": [
+            {
+                "id": 1,
+                "userId": 13,
+                "productId": 1,
+                "quantity": 12,
+                "productName": "iphone7",
+                "productSubtitle": "双十一促销",
+                "productMainImage": "mainimage.jpg",
+                "productPrice": 7199.22,
+                "productStatus": 1,
+                "productTotalPrice": 86390.64,
+                "productStock": 86,
+                "productChecked": 1,
+                "limitQuantity": "LIMIT_NUM_SUCCESS"
+            },
+            {
+                "id": 2,
+                "userId": 13,
+                "productId": 2,
+                "quantity": 1,
+                "productName": "oppo R8",
+                "productSubtitle": "oppo促销进行中",
+                "productMainImage": "mainimage.jpg",
+                "productPrice": 2999.11,
+                "productStatus": 1,
+                "productTotalPrice": 2999.11,
+                "productStock": 86,
+                "productChecked": 1,
+                "limitQuantity": "LIMIT_NUM_SUCCESS"
+            }
+        ],
+        "allChecked": true,
+        "cartTotalPrice": 89389.75
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 10,
+    "msg": "用户未登录,请登录"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="4-移除购物车某个产品_1" href="#4-移除购物车某个产品_1"></a>4.移除购物车某个产品</h4>
+<p><strong>/cart/delete_product.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/cart/delete_product.do?productIds=1,3">http://localhost:8080/cart/delete_product.do?productIds=1,3</a></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>productIds
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "cartProductVoList": [
+            {
+                "id": 2,
+                "userId": 13,
+                "productId": 2,
+                "quantity": 1,
+                "productName": "oppo R8",
+                "productSubtitle": "oppo促销进行中",
+                "productMainImage": "mainimage.jpg",
+                "productPrice": 2999.11,
+                "productStatus": 1,
+                "productTotalPrice": 2999.11,
+                "productStock": 86,
+                "productChecked": 1,
+                "limitQuantity": "LIMIT_NUM_SUCCESS"
+            }
+        ],
+        "allChecked": true,
+        "cartTotalPrice": 2999.11
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 10,
+    "msg": "用户未登录,请登录"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="5-购物车选中某个商品_1" href="#5-购物车选中某个商品_1"></a>5.购物车选中某个商品</h4>
+<p><strong>/cart/select.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/cart/select.do?productId=1">http://localhost:8080/cart/select.do?productId=1</a></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>productId
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "cartProductVoList": [
+            {
+                "id": 2,
+                "userId": 13,
+                "productId": 2,
+                "quantity": 1,
+                "productName": "oppo R8",
+                "productSubtitle": "oppo促销进行中",
+                "productMainImage": "mainimage.jpg",
+                "productPrice": 2999.11,
+                "productStatus": 1,
+                "productTotalPrice": 2999.11,
+                "productStock": 86,
+                "productChecked": 1,
+                "limitQuantity": "LIMIT_NUM_SUCCESS"
+            }
+        ],
+        "allChecked": true,
+        "cartTotalPrice": 2999.11
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 10,
+    "msg": "用户未登录,请登录"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="6-购物车取消选中某个商品_1" href="#6-购物车取消选中某个商品_1"></a>6.购物车取消选中某个商品</h4>
+<p><strong>/cart/un_select.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/cart/un_select.do?productId=2">http://localhost:8080/cart/un_select.do?productId=2</a></p>
+
+<blockquote>
+<p>注意返回值中的cartTotalPrice，如果反选之后总价的变化</p>
+
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>productId
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "cartProductVoList": [
+            {
+                "id": 2,
+                "userId": 13,
+                "productId": 2,
+                "quantity": 1,
+                "productName": "oppo R8",
+                "productSubtitle": "oppo促销进行中",
+                "productMainImage": "mainimage.jpg",
+                "productPrice": 2999.11,
+                "productStatus": 1,
+                "productTotalPrice": 2999.11,
+                "productStock": 86,
+                "productChecked": 0,
+                "limitQuantity": "LIMIT_NUM_SUCCESS"
+            }
+        ],
+        "allChecked": true,
+        "cartTotalPrice": 0
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 10,
+    "msg": "用户未登录,请登录"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="7-查询在购物车里的产品数量_1" href="#7-查询在购物车里的产品数量_1"></a>7.查询在购物车里的产品数量</h4>
+<p><strong>/cart/get_cart_product_count.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/cart/get_cart_product_count.do">http://localhost:8080/cart/get_cart_product_count.do</a></p>
+
+<blockquote>
+<p>未登录返回0</p>
+
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>无
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": 0
+
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 10,
+    "msg": "出现异常"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="8-购物车全选_1" href="#8-购物车全选_1"></a>8.购物车全选</h4>
+<p><strong>/cart/select_all.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/cart/select_all.do">http://localhost:8080/cart/select_all.do</a></p>
+
+<blockquote>
+<p>注意返回值中的cartTotalPrice的变化</p>
+
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>无
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "cartProductVoList": [
+            {
+                "id": 2,
+                "userId": 13,
+                "productId": 2,
+                "quantity": 1,
+                "productName": "oppo R8",
+                "productSubtitle": "oppo促销进行中",
+                "productMainImage": "mainimage.jpg",
+                "productPrice": 2999.11,
+                "productStatus": 1,
+                "productTotalPrice": 2999.11,
+                "productStock": 86,
+                "productChecked": 0,
+                "limitQuantity": "LIMIT_NUM_SUCCESS"
+            }
+        ],
+        "allChecked": true,
+        "cartTotalPrice": 2999.11
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 10,
+    "msg": "用户未登录,请登录"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="9-购物车取消全选_1" href="#9-购物车取消全选_1"></a>9.购物车取消全选</h4>
+<p><strong>/cart/un_select_all.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/cart/un_select_all.do">http://localhost:8080/cart/un_select_all.do</a></p>
+
+<blockquote>
+<p>注意返回值中的cartTotalPrice总价的变化</p>
+
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>无
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "cartProductVoList": [
+            {
+                "id": 2,
+                "userId": 13,
+                "productId": 2,
+                "quantity": 1,
+                "productName": "oppo R8",
+                "productSubtitle": "oppo促销进行中",
+                "productMainImage": "mainimage.jpg",
+                "productPrice": 2999.11,
+                "productStatus": 1,
+                "productTotalPrice": 2999.11,
+                "productStock": 86,
+                "productChecked": 0,
+                "limitQuantity": "LIMIT_NUM_SUCCESS"
+            }
+        ],
+        "allChecked": true,
+        "cartTotalPrice": 0
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 10,
+    "msg": "用户未登录,请登录"
+}
+</pre></div></div>
+<hr>
+</div><div class='title'>门户_产品接口</div><div class='content'><p>[MENU]</p>
+<h4><a class="anchor" id="1-产品搜索及动态排序list_1" href="#1-产品搜索及动态排序list_1"></a>1.产品搜索及动态排序List</h4>
+<p><strong>/product/list.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/product/list.do?keyword=&amp;categoryId=1&amp;orderBy=price_desc">http://localhost:8080/product/list.do?keyword=&categoryId=1&orderBy=price_desc</a></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>categoryId
+keyword
+pageNum(default=1)
+pageSize(default=10)
+orderBy(default="")：排序参数：例如price_desc，price_asc
+
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 0,
+    "data": {
+        "pageNum": 1,
+        "pageSize": 10,
+        "size": 2,
+        "orderBy": null,
+        "startRow": 1,
+        "endRow": 2,
+        "total": 2,
+        "pages": 1,
+        "list": [
+            {
+                "id": 1,
+                "categoryId": 3,
+                "name": "iphone7",
+                "subtitle": "双十一促销",
+                "mainImage": "mainimage.jpg",
+                "status":1,
+                "price": 7199.22
+            },
+            {
+                "id": 2,
+                "categoryId": 2,
+                "name": "oppo R8",
+                "subtitle": "oppo促销进行中",
+                "mainImage": "mainimage.jpg",
+                "status":1,
+                "price": 2999.11
+            }
+        ],
+        "firstPage": 1,
+        "prePage": 0,
+        "nextPage": 0,
+        "lastPage": 1,
+        "isFirstPage": true,
+        "isLastPage": true,
+        "hasPreviousPage": false,
+        "hasNextPage": false,
+        "navigatePages": 8,
+        "navigatepageNums": [
+            1
+        ]
+    }
+}
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "参数错误"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="2-产品detail_1" href="#2-产品detail_1"></a>2.产品detail</h4>
+<p><strong>/product/detail.do</strong></p>
+
+<p><a target="_blank" href="http://localhost:8080/product/detail.do?productId=2">http://localhost:8080/product/detail.do?productId=2</a></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>productId
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>{
+  "status": 0,
+  "data": {
+    "id": 2,
+    "categoryId": 2,
+    "name": "oppo R8",
+    "subtitle": "oppo促销进行中",
+    "mainImage": "mainimage.jpg",
+    "subImages": "[\"mmall/aa.jpg\",\"mmall/bb.jpg\",\"mmall/cc.jpg\",\"mmall/dd.jpg\",\"mmall/ee.jpg\"]",
+    "detail": "richtext",
+    "price": 2999.11,
+    "stock": 71,
+    "status": 1,
+    "createTime": "2016-11-20 14:21:53",
+    "updateTime": "2016-11-20 14:21:53"
+  }
+}
+
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>{
+    "status": 1,
+    "msg": "该商品已下架或删除"
+}
+</pre></div></div>
+<hr>
+<h4><a class="anchor" id="模板_5" href="#模板_5"></a>模板</h4>
+<p><strong>/product/.do</strong></p>
+
+<blockquote>
+<p>request</p>
+</blockquote>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<blockquote>
+<p>response</p>
+</blockquote>
+
+<p>success</p>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<p>fail</p>
+<div class="white"><div class="highlight"><pre>k
+</pre></div></div>
+<hr>
+</div>
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+</body>
+</html>
