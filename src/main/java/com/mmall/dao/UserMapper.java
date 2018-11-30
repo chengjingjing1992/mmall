@@ -24,6 +24,10 @@ public interface UserMapper {
     User selectLogin(@Param("userName")String userName,@Param("passWord")String passWord);
 
     User getUserByName(String userName);
+                    //这里有多个就得加@Param 不知道为什么
+    int checkAnswer(@Param("userName")String userName,@Param("question")String question,@Param("answer")String answer);
+                  //这里有多个就得加@Param 不知道为什么
+    int updatePassWordByName(@Param("userName")String userName,@Param("passwordNewMD5")String passwordNewMD5);
 
 
 }

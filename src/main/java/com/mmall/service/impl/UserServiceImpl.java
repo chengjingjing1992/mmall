@@ -2,15 +2,18 @@ package com.mmall.service.impl;
 
 import com.mmall.common.Const;
 import com.mmall.common.ServerResponse;
+import com.mmall.common.TokenCache;
 import com.mmall.dao.UserMapper;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
 import com.mmall.util.MD5Util;
+import jdk.nashorn.internal.parser.Token;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -135,5 +138,39 @@ public class UserServiceImpl implements IUserService {
         return ServerResponse.createBySuccess(user.getQuestion());
     }
 
+    @Transactional
+    public ServerResponse forgetCheckAnswer(String userName,String question,String answer){
+        //
+        if (userMapper.checkAnswer( userName, question, answer)>0){
+            //生成token
+            String forgetToken= UUID.randomUUID().toString();
+            //把forgetToken 放到本地cache 存储器中
+            //把forgetToken 放到本地cache 存储器中 然后设置它的有效期
+            TokenCache.setKeyAndValue("token_"+userName,forgetToken);
+            return  ServerResponse.createBySuccess(forgetToken);
+        }
+        return ServerResponse.createByErrorMeg("问题回答错误");
+    }
 
+    @Transactional
+    public  ServerResponse forgetResetPassword(String userName, String passwordNew, String forgetToken){
+        if(this.checkValid(userName,Const.USERNAME).isSuccess()){
+            return ServerResponse.createBySuccessMeg("用户不存在");
+        }
+        if(StringUtils.isBlank(forgetToken)){
+            return ServerResponse.createBySuccessMeg("参数错误 没传token");
+        }
+        //存储器Cache里的token
+        String token=TokenCache.getValue(TokenCache.TOKEN_PREFIX+userName);
+        if(StringUtils.isBlank(token)){//如果 token 为null 或 ""
+            return ServerResponse.createByErrorMeg("token 已经失效");
+        }
+        if (StringUtils.equals(token,forgetToken)){
+            String passwordNewMD5=MD5Util.MD5EncodeUtf8(passwordNew);
+            if(userMapper.updatePassWordByName(userName,passwordNewMD5)==1){
+                return ServerResponse.createBySuccessMeg("密码修改成功");
+            }
+        }
+        return null;
+    }
 }

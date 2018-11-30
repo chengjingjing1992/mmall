@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.TimeUnit;
 
 public class TokenCache {
+    public static final String TOKEN_PREFIX="token_";
+
     //声明日志
     private static Logger logger= LoggerFactory.getLogger(TokenCache.class); //选择lof4
     //声明静态的内存块
@@ -22,7 +24,7 @@ public class TokenCache {
                 }
             });
 
-    public  static void setKey(String key,String value){
+    public  static void setKeyAndValue(String key,String value){
         localCache.put(key,value);
     }
 

@@ -5,6 +5,7 @@ import com.mmall.common.ServerResponse;
 import com.mmall.dao.UserMapper;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
+import jdk.nashorn.internal.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,9 +76,15 @@ public class UserController {
     @ResponseBody
     public ServerResponse forgetCheckAnswer(String userName,String question,String answer){
 
-        return null;
+        return iUserService.forgetCheckAnswer( userName, question, answer);
     }
 
-
+    //忘记密码的重设密码
+    ///user/forget_reset_password.do
+    @RequestMapping(value = "/forgetResetPassword.do",method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse forgetResetPassword(String userName, String passwordNew, String forgetToken){
+        return iUserService.forgetResetPassword( userName,  passwordNew,  forgetToken);
+    }
 
 }
