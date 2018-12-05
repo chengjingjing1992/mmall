@@ -29,5 +29,7 @@ public interface UserMapper {
                   //这里有多个就得加@Param 不知道为什么
     int updatePassWordByName(@Param("userName")String userName,@Param("passwordNewMD5")String passwordNewMD5);
 
+    int updateInformation(@Param("userName") String uerName,@Param("email")String email,@Param("phone") String phone,@Param("question")String question,@Param("answer")String answer);
 
+    int checkPassWord(@Param("MD5PassWord")String MD5PassWord,@Param("userId") Integer userId);
 }

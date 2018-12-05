@@ -1,6 +1,7 @@
 package com.mmall.controller.portal;
 
 import com.mmall.common.Const;
+import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.dao.UserMapper;
 import com.mmall.pojo.User;
@@ -85,6 +86,34 @@ public class UserController {
     @ResponseBody
     public ServerResponse forgetResetPassword(String userName, String passwordNew, String forgetToken){
         return iUserService.forgetResetPassword( userName,  passwordNew,  forgetToken);
+    }
+
+//    登录中状态重置密码/user/reset_password.do
+    @RequestMapping(value = "/resetPassword.do",method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse resetPassword(String passwordOld, String passwordNew,HttpSession session){
+        return iUserService.resetPassword( passwordOld,  passwordNew,session);
+    }
+
+//    登录状态更新个人信息
+///user/update_information.do
+    @RequestMapping(value = "/updateInformation.do",method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse updateInformation(String email,String phone,String question,String answer,HttpSession session){
+
+        return iUserService.updateInformation( email, phone, question, answer,session);
+    }
+//    /user/get_information.do获取当前登录用户的详细信息，并强制登录
+    @RequestMapping(value = "/getInformation.do",method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse getInformation(HttpSession session){
+
+        User user=(User) session.getAttribute(Const.CURRENT_USER);
+
+        if(user!=null){
+            return iUserService.getInformation(user.getId());
+        }
+        return ServerResponse.createByErrorCodeMeg(ResponseCode.NEED_LOGIN.getCode(),"用户未登录,无法获取当前用户信息,status=10,强制登录");
     }
 
 }

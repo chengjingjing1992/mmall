@@ -1,18 +1,19 @@
 package com.mmall.service.impl;
 
 import com.mmall.common.Const;
+import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.common.TokenCache;
 import com.mmall.dao.UserMapper;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
 import com.mmall.util.MD5Util;
-import jdk.nashorn.internal.parser.Token;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -93,6 +94,10 @@ public class UserServiceImpl implements IUserService {
             }
 
             if(Const.EMAIL.equals(type)){
+                String format = "\\p{Alpha}\\w{2,15}[@][a-z0-9]{3,}[.]\\p{Lower}{2,}";
+                if(!value.matches(format)){
+                    return ServerResponse.createByErrorMeg("该邮箱格式错误");
+                }
                 //判断邮箱是否存在
                 int resultEmailCount=userMapper.checkEmail(value);
                 if (resultEmailCount!=0){
@@ -172,5 +177,51 @@ public class UserServiceImpl implements IUserService {
             }
         }
         return null;
+    }
+
+    @Transactional
+    public ServerResponse resetPassword(String passwordOld, String passwordNew, HttpSession session){
+        User user=(User)session.getAttribute(Const.CURRENT_USER);//得到的这个User 是密码被置空的
+        System.out.println("原密码"+userMapper.getUserByName(user.getUsername()).getPassword());
+        System.out.println("输入的原密码"+MD5Util.MD5EncodeUtf8(passwordOld));
+//防止横向越权,要校验一下这个用户的旧密码,一定要指定是这个用户.因为我们会查询一个count(1),如果不指定id,那么结果就是true啦count>0;
+        int resultCount=userMapper.checkPassWord(MD5Util.MD5EncodeUtf8(passwordOld),user.getId());
+
+        if(resultCount==0){
+            return ServerResponse.createByErrorMeg("原密码错误");
+        }
+        if( userMapper.updatePassWordByName(user.getUsername(), MD5Util.MD5EncodeUtf8(passwordNew) )>0){
+            return ServerResponse.createBySuccessMeg("密码修改成功");
+        }
+        return ServerResponse.createByErrorMeg("密碼修改失敗");
+    }
+
+    @Transactional
+    public ServerResponse updateInformation(String email,String phone,String question,String answer,HttpSession session){
+        ServerResponse serverResponse=this.checkValid(phone,Const.PHONE);
+        if(!serverResponse.isSuccess()){
+            return serverResponse;
+        }
+        serverResponse=this.checkValid(email,Const.EMAIL);
+        if(!serverResponse.isSuccess()){
+            return serverResponse;
+        }
+        User user=(User)session.getAttribute(Const.CURRENT_USER);
+        if(user==null){
+            return ServerResponse.createByErrorMeg("用户未登录");
+        }
+        if(userMapper.updateInformation( user.getUsername(),email,phone, question, answer)==1){
+            return ServerResponse.createBySuccessMeg("更新个人信息成功");
+        }
+        return ServerResponse.createBySuccessMeg("更新个人信息失败");
+    }
+    @Transactional
+    public ServerResponse getInformation(Integer userId){
+        User user=userMapper.selectByPrimaryKey(userId);
+        user.setPassword(StringUtils.EMPTY);
+        if(user!=null){
+            return ServerResponse.createBySuccess(user);
+        }
+        return ServerResponse.createByErrorMeg("根据id获取用户信息失败");
     }
 }
