@@ -13,7 +13,7 @@ public class TokenCache {
 
     //声明日志
     private static Logger logger= LoggerFactory.getLogger(TokenCache.class); //选择lof4
-    //声明静态的内存块
+    //声明静态的内存块  LoadingCache这个是guawa 里面的“本地缓存”
     private static LoadingCache<String,String> localCache=
                                             //构建本地Cache// 设置缓存初始化容量        //设置有效期12小时
             CacheBuilder.newBuilder().initialCapacity(1000).maximumSize(10000).expireAfterAccess(12, TimeUnit.HOURS).build(new CacheLoader<String, String>() {
