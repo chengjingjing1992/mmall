@@ -16,4 +16,5 @@ public interface IUserService {// 用字母I开头一看就知道是个接口便
     ServerResponse resetPassword(String passwordOld, String passwordNew, HttpSession session);
     ServerResponse updateInformation(String email,String phone,String question,String answer,HttpSession session);
     ServerResponse getInformation(Integer userId);
+    ServerResponse checkAdminRole(User user);
 }
