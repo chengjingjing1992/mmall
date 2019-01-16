@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/mange/category/")
@@ -55,7 +56,7 @@ public class CategoryManageController {
     }
     @RequestMapping("getChildrenCategoryarallel.do")//获取一个分类的子节点 并且是平级的 并且不递归
     @ResponseBody
-    public ServerResponse getChildrenCategoryParallel(HttpSession session,Integer categoryId){
+    public ServerResponse getChildrenCategoryParallel(HttpSession session, @RequestParam(value = "categoryId",defaultValue = "0")Integer categoryId){
         //判断登录
         User user= (User) session.getAttribute(Const.CURRENT_USER);
         if(user==null){
@@ -71,6 +72,30 @@ public class CategoryManageController {
 
         return ServerResponse.createByErrorMeg("无权限操作,需要管理员权限");
     }
+
+    //查询当前id的节点 和 递归获取所有 子节点
+    @RequestMapping("getCategoryAndDeepChildrenCategory.do")
+    @ResponseBody
+    public ServerResponse getCategoryAndDeepChildrenCategory(HttpSession session,@RequestParam(value = "categoryId",defaultValue = "0")Integer categoryId ){
+
+        //判断登录
+        User user= (User) session.getAttribute(Const.CURRENT_USER);
+        if(user==null){
+            return ServerResponse.createByErrorMeg("用户为登录");
+        }
+        //判断是管理员
+        //判断是否是管理员
+        if(iUserService.checkAdminRole(user).isSuccess()){
+
+            return iCategoryService.getCategoryAndDeepChildrenCategory(categoryId);
+
+        }
+
+        return ServerResponse.createByErrorMeg("无权限操作,需要管理员权限");
+    }
+
+
+
 
 
 
