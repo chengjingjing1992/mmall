@@ -116,4 +116,47 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByUserId" parameterType="integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from mmall_cart
+    <where>
+      user_id =#{userId}
+    </where>
+  </select>
+  <select id="selectByUserIdAndProductId" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from mmall_cart
+    <where>
+      user_id =#{userId} And
+      product_id=#{productId}
+    </where>
+  </select>
+  <select id="selectCartProductCheckedStatusByUserId" parameterType="int" resultType="int">
+    select count(1) from mmall_cart
+    <where>
+      user_id=#{userId}
+    </where>
+  </select>
+  <delete id="deleteCartByUserIdAndProductIds" parameterType="map" >
+    delete from mmall_cart
+    where user_id = #{userId}
+    <if test="productIdList != null">
+      and product_id in
+      <foreach collection="productIdList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+  </delete>
+
+  <select id="selectCartProductCount" parameterType="int" resultType="int">
+select IFNULL(sum(quantity),0) as count from mmall_cart where user_id = #{userId}
+  </select>
+
+  <update id="updateCartCheckedAll" parameterType="map" >
+    update mmall_cart set checked=#{checked}
+    where user_id = #{userId}
+  </update>
+
 </mapper>

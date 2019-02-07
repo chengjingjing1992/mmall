@@ -1,21 +1,21 @@
 package com.mmall.common;
 
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+        import com.google.common.cache.CacheBuilder;
+        import com.google.common.cache.CacheLoader;
+        import com.google.common.cache.LoadingCache;
+        import org.slf4j.Logger;
+        import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.TimeUnit;
+        import java.util.concurrent.TimeUnit;
 
 public class TokenCache {
     public static final String TOKEN_PREFIX="token_";
 
     //声明日志
     private static Logger logger= LoggerFactory.getLogger(TokenCache.class); //选择lof4
-    //声明静态的内存块  LoadingCache这个是guawa 里面的“本地缓存”
+    //声明静态的内存块  LoadingCache这个是guava 里面的“本地缓存”
     private static LoadingCache<String,String> localCache=
-                                            //构建本地Cache// 设置缓存初始化容量        //设置有效期12小时
+            //构建本地Cache// 设置缓存初始化容量        //设置有效期12小时
             CacheBuilder.newBuilder().initialCapacity(1000).maximumSize(10000).expireAfterAccess(12, TimeUnit.HOURS).build(new CacheLoader<String, String>() {
                 //默认的数据加载实现 ，当调用get 取值的时候，如果key 没有对应的值，就调用这个方法进行加载
                 @Override
@@ -33,7 +33,7 @@ public class TokenCache {
         try {
             value=localCache.get(key);
             if("null".equals(value)){
-               return null;
+                return null;
             }
             return value;
 

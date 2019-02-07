@@ -122,10 +122,13 @@ public class ProductManageController {
 
 //        if(iUserService.checkAdminRole(user).isSuccess()){
             //根据servlet 的上下文 动态的创造出一个相对路径出来
-            //我们要上传的文件夹就是这个 upload
-            String path=request.getSession().getServletContext().getRealPath("upload");
+            //我们要上传的文件夹就是这个 upload  项目本地的upload
+            String projectLocalPath=request.getSession().getServletContext().getRealPath("upload");
+//        C:\\Users\\Administrator\\IdeaProjects\\mmall\target\\mmall\\upload
+            System.out.println("path=="+projectLocalPath);
+            System.out.println(request.getSession().getServletContext());
 
-            String targetFileName=iFileService.upload(multipartFile,path);
+            String targetFileName=iFileService.upload(multipartFile,projectLocalPath);
             String url= PropertiesUtil.getProperty("ftp.server.http.prefix")+targetFileName;
             Map fileMap = Maps.newHashMap();
             fileMap.put("uri",targetFileName);

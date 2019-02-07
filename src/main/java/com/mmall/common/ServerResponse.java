@@ -83,6 +83,13 @@ public class ServerResponse<T> implements Serializable { //用泛型来声明这
         return new ServerResponse<T>(errorCode,errorMessage);
     }
 
+    public static void main(String[] args) {
+        ServerResponse s1=new ServerResponse(1,new Object());
+
+        ServerResponse s2=new ServerResponse(2,"bbn");
+        System.out.println("sssss");
+    }
+
 
 
 }

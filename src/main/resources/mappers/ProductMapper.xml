@@ -43,6 +43,7 @@
       #{status,jdbcType=INTEGER}, now(), now()
       )
   </insert>
+
   <insert id="insertSelective" parameterType="com.mmall.pojo.Product" >
     insert into mmall_product
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -122,6 +123,14 @@
       </if>
     </trim>
   </insert>
+
+  <select id="selectList" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    from mmall_product
+    ORDER BY id asc
+  </select>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.mmall.pojo.Product" >
     update mmall_product
     <set >
@@ -176,4 +185,44 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByNameAndProductId" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from mmall_product
+    <where>
+      <if test="productName != null">
+        and name like #{productName}
+      </if>
+      <if test="productId != null">
+        and id = #{productId}
+      </if>
+    </where>
+  </select>
+  <select id="selectProductListByIdAndKeyword" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM mmall_product
+    <where>
+      <if test="keyword !=null">
+        and name like #{keyword}
+      </if>
+      <if test="idList !=null" >
+        and id in
+        <foreach item="item" index="index" open="(" separator="," close=")" collection="idList">
+          #item
+        </foreach>
+      </if>
+    </where>
+  </select>
+  <select id="selectByUserId" parameterType="integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from mmall_product
+    <where>
+      user_id =#{userId}
+    </where>
+  </select>
+
+
 </mapper>

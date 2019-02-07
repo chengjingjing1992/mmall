@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
-@RequestMapping("/mange/category/")
+@RequestMapping("/manage/category/")
 public class CategoryManageController {
 
     @Autowired
