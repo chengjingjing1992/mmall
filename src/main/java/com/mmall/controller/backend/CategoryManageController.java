@@ -1,21 +1,25 @@
 package com.mmall.controller.backend;
 
+import com.google.gson.JsonObject;
 import com.mmall.common.Const;
 import com.mmall.common.ServerResponse;
+import com.mmall.dao.CategoryMapper;
 import com.mmall.pojo.Category;
 import com.mmall.pojo.User;
 import com.mmall.service.ICategoryService;
 import com.mmall.service.IUserService;
 import org.apache.ibatis.annotations.Param;
+import org.codehaus.jackson.map.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Set;
+import java.security.PublicKey;
+import java.util.*;
 
 @Controller
 @RequestMapping("/manage/category/")
@@ -25,6 +29,11 @@ public class CategoryManageController {
     private IUserService iUserService;
     @Autowired
     private ICategoryService iCategoryService;
+    @Autowired//通过这个注解把mapper 注解进来
+     private CategoryMapper categoryMapper;
+
+
+
 
     @RequestMapping("addCategory.do")
     @ResponseBody                                                                                  //如果没有传默认是0
@@ -93,6 +102,84 @@ public class CategoryManageController {
 
         return ServerResponse.createByErrorMeg("无权限操作,需要管理员权限");
     }
+    //查询当前id的节点 和 递归获取所有 子节点 并且进行排序
+    @RequestMapping("getCategoryAndDeepChildrenCategorySort.do")
+    public  String getCategoryAndDeepChildrenCategorySort(HttpServletRequest request){
+        //查询所有的节点 和 递归获取所有 子节点
+        List<Integer> idList= (List) iCategoryService.getCategoryAndDeepChildrenCategory(0).getData();
+        //每一个 分类id  parentid  categoryName 存到map 然后一起存到List
+        List sortCategoryList=new ArrayList();
+
+        Map map=null;
+        for (Integer i:idList
+             ) {
+            map=new HashMap<>();
+            Category category=categoryMapper.selectByPrimaryKey(i);
+
+//            if(category!=null){
+                map.put("id",category.getId().toString());
+                map.put("text",category.getName());
+                if(category.getParentId()==null){
+                    map.put("parentId","");
+                }else {
+                    map.put("parentId",category.getParentId().toString());
+                }
+
+
+//            }
+            System.out.println("map"+map.toString());
+            sortCategoryList.add(map);
+            System.out.println("size="+sortCategoryList.size());
+        }
+
+
+        Object object=MultipleTree.sort(sortCategoryList);
+        request.setAttribute("nodes",object.toString());
+
+
+        return "product_add";
+    }
+    @RequestMapping("sort.do")
+    public String sortAll(HttpServletRequest request){
+        List list =new ArrayList();
+        list=sort(list,0);
+        List list1 =new ArrayList();
+        for (Object id:list
+             ) {
+            list1.add(categoryMapper.selectByPrimaryKey((Integer) id));
+        }
+        request.setAttribute("categorys",list1);
+
+        return "product_add";
+    }
+
+
+//    List list=new ArrayList();
+    int index=0;
+    int level=-1;
+    public  List sort(List list,Integer id){
+        if(id==0){
+            list.add(id);
+            index=list.indexOf(id);
+            level=level+1;
+            categoryMapper.selectByPrimaryKey(id).setLevel(level);
+        }else {
+            index=list.indexOf(id);
+            level=level+1;
+            categoryMapper.selectByPrimaryKey(id).setLevel(level);
+        }
+        list=list.subList(0,index+1);
+        List<Category> idList=categoryMapper.getChildrenCategoryParallel(id);
+        if(idList!=null){
+            for (Category category:idList
+            ) {
+                list.add(category.getId());
+                sort(list,category.getId());
+            }
+        }
+        return list;
+    }
+
 
 
 
