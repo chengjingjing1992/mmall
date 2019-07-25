@@ -51,6 +51,11 @@
         <property name="maxInMemorySize" value="4096" />
         <property name="defaultEncoding" value="UTF-8"></property>
     </bean>
+    <!--备注：这里我进行了 mybatis 的inspection 的设置更改-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
 
 
 </beans>

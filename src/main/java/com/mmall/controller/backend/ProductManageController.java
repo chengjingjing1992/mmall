@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +35,14 @@ public class ProductManageController {
     private IProductService iProductService;
     @Autowired
     private IFileService iFileService;
+
+
+    @RequestMapping("getProductAdd.do")
+    public String getProductAdd(){
+        //获取所有的分类id 并且已经排序好
+
+        return "";
+    }
 
     @RequestMapping("saveProduct.do")
     @ResponseBody
@@ -81,6 +90,26 @@ public class ProductManageController {
         }
 
     }
+    @RequestMapping("adminDetail.do")
+    public String getAdminDetail(HttpServletRequest request,HttpSession session, Integer productId,Integer status){
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user == null){
+
+            request.setAttribute("serverRes",ServerResponse.createByErrorCodeMeg(ResponseCode.NEED_LOGIN.getCode(),"用户未登录,请登录管理员"));
+            return "productdetail";
+        }
+        if(iUserService.checkAdminRole(user).isSuccess()){
+            //填充业务
+            request.setAttribute("serverRes",iProductService.manageProductDetail(productId));
+            return "productdetail";
+
+        }else{
+
+            request.setAttribute("serverRes",ServerResponse.createByErrorMeg("无权限操作"));
+            return "productdetail";
+        }
+
+    }
 
     @RequestMapping("list.do")
     @ResponseBody
@@ -95,6 +124,27 @@ public class ProductManageController {
             return iProductService.getProductList(pageNum,pageSize);
         }else{
             return ServerResponse.createByErrorMeg("无权限操作");
+        }
+    }
+
+    @RequestMapping("adminList.do")
+    public String adminProductList(HttpServletRequest req,HttpSession session, @RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "4") int pageSize){
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+
+        if(user == null){
+            req.setAttribute("serverRsponse",ServerResponse.createByErrorCodeMeg(ResponseCode.NEED_LOGIN.getCode(),"用户未登录,请登录管理员"));
+            return "product_list";
+
+        }
+        if(iUserService.checkAdminRole(user).isSuccess()){
+            req.setAttribute("serverRsponse",iProductService.getProductList(pageNum,pageSize));
+
+            //填充业务
+            return "product_list";
+        }else{
+            req.setAttribute("serverRsponse",ServerResponse.createByErrorMeg("无权限操作"));
+
+            return "product_list";
         }
     }
     @RequestMapping("search.do")

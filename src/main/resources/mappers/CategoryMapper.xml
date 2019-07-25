@@ -10,10 +10,11 @@
       <arg column="sort_order" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="level" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, parent_id, name, status, sort_order, create_time, update_time
+    id, parent_id, name, status, sort_order, create_time, update_time,level
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -102,6 +103,9 @@
       </if>
       <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="level !=null" >
+        level = #{level,jdbcType=INTEGER}
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

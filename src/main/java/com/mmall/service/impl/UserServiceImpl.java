@@ -224,4 +224,12 @@ public class UserServiceImpl implements IUserService {
         }
         return ServerResponse.createByErrorMeg("根据id获取用户信息失败");
     }
+    @Transactional
+    public ServerResponse checkAdminRole(User user){
+        if(user!=null&&user.getRole().intValue()==Const.ADMIN){
+               return ServerResponse.createBySuccess();
+        }
+        return ServerResponse.createByError();
+    }
+
 }

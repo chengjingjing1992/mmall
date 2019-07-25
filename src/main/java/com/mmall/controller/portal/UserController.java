@@ -12,7 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.net.CookieStore;
 
 @Controller
 @RequestMapping("/user")
@@ -23,19 +28,36 @@ public class UserController {
     //登录
     @RequestMapping(value = "/login.do",method = RequestMethod.POST)//method = RequestMethod.POST 这个请求只能通过post 请求过来
     @ResponseBody  //返回的时候 自动通过spring MVC 的jackson 插件 将我们的返回值序列化成json  配置参见dispatcher-servlet.xml
-    public ServerResponse<User> login(String userName, String passWord, HttpSession session){
+    public ServerResponse<User> login(String userName, String passWord, HttpSession session,HttpServletResponse response){
+        ServerResponse<User> userServerResponse=iUserService.login(userName,passWord);
+        if(userServerResponse.isSuccess()==true){
+            session.setAttribute(Const.CURRENT_USER,userServerResponse.getData());
+            Cookie cookie=new Cookie("sessionId",session.getId());
+            cookie.setPath("/");//("/")表示的是访问当前工程下的所有webApp都会产生cookie
+            cookie.setMaxAge(24 * 60 * 60);
+            response.addCookie(cookie);
+        }
+        System.out.println(userServerResponse.toString());
+        return userServerResponse;
+    }
+    @RequestMapping(value = "/adminLogin.do",method = RequestMethod.POST)//method = RequestMethod.POST 这个请求只能通过post 请求过来
+    @ResponseBody  //返回的时候 自动通过spring MVC 的jackson 插件 将我们的返回值序列化成json  配置参见dispatcher-servlet.xml
+    public ModelAndView adminLogin(String userName, String passWord, HttpSession session){
         ServerResponse<User> userServerResponse=iUserService.login(userName,passWord);
         if(userServerResponse.isSuccess()==true){
             session.setAttribute(Const.CURRENT_USER,userServerResponse.getData());
         }
         System.out.println(userServerResponse.toString());
-        return userServerResponse;
+        ModelAndView modelAndView=new ModelAndView("login");
+        modelAndView.addObject(userServerResponse);
+        return modelAndView;
     }
     //登出
     @RequestMapping(value = "/logout.do",method = RequestMethod.GET)
     @ResponseBody
     public ServerResponse logout(HttpSession session){
         session.removeAttribute(Const.CURRENT_USER);
+
         return ServerResponse.createBySuccess();
     }
     //注册

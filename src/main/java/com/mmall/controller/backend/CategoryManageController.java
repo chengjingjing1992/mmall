@@ -1,5 +1,7 @@
 package com.mmall.controller.backend;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.gson.JsonObject;
 import com.mmall.common.Const;
 import com.mmall.common.ServerResponse;
@@ -8,7 +10,9 @@ import com.mmall.pojo.Category;
 import com.mmall.pojo.User;
 import com.mmall.service.ICategoryService;
 import com.mmall.service.IUserService;
+import com.mmall.vo.CategoryVo;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.SqlSession;
 import org.codehaus.jackson.map.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,7 +58,10 @@ public class CategoryManageController {
     }
     @RequestMapping("updateCategoryName.do")//更新分类的名字
     @ResponseBody
-    public ServerResponse updateCategoryName(HttpSession session,Integer categoryId,String  categoryName ){
+    public ServerResponse updateCategoryName(HttpServletRequest request,
+                                             HttpSession session,
+                                             Integer categoryId,
+                                             String  categoryName ){
         User user=(User)session.getAttribute(Const.CURRENT_USER);
         if(user==null){
             return ServerResponse.createByErrorMeg("用户为登录");
@@ -63,6 +70,27 @@ public class CategoryManageController {
         return iCategoryService.updateCategoryName(categoryId,categoryName);
 
     }
+    @RequestMapping("adminUpdateCategoryName.do")//更新分类的名字
+    public String adminUpdateCategoryName(HttpServletRequest request,
+                                             HttpSession session,
+                                             Integer categoryId,
+                                             String  categoryName ){
+//        User user=(User)session.getAttribute(Const.CURRENT_USER);
+//        if(user==null){
+//            return ServerResponse.createByErrorMeg("用户为登录");
+//        }
+        iCategoryService.updateCategoryName(categoryId,categoryName);
+
+        //改名逻辑
+        return "redirect:sort.do?pageNum=1&pageSize=50";
+
+    }
+
+
+
+
+
+
     @RequestMapping("getChildrenCategoryarallel.do")//获取一个分类的子节点 并且是平级的 并且不递归
     @ResponseBody
     public ServerResponse getChildrenCategoryParallel(HttpSession session, @RequestParam(value = "categoryId",defaultValue = "0")Integer categoryId){
@@ -139,46 +167,59 @@ public class CategoryManageController {
 
         return "product_add";
     }
+    //商品类型管理
     @RequestMapping("sort.do")
-    public String sortAll(HttpServletRequest request){
+    public String sortAll(HttpServletRequest request,
+                          @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
+                          @RequestParam(value = "pageSize",defaultValue = "10") int pageSize){
         List list =new ArrayList();
-        list=sort(list,0);
+//        list=sort(list,0);
+        list=iCategoryService.sort(list,0);
+
+        PageHelper.startPage(pageNum,pageSize);
         List list1 =new ArrayList();
+
         for (Object id:list
              ) {
             list1.add(categoryMapper.selectByPrimaryKey((Integer) id));
         }
-        request.setAttribute("categorys",list1);
+
+        list1=list1.subList(1,list1.size());
+        int end=pageNum*pageSize;
+        if(list1.size()<end){
+            end=list1.size();
+        }
+        request.setAttribute("categories",list1.subList((pageNum-1)*pageSize,end));
 
         return "product_add";
     }
-
-
-//    List list=new ArrayList();
-    int index=0;
-    int level=-1;
-    public  List sort(List list,Integer id){
-        if(id==0){
-            list.add(id);
-            index=list.indexOf(id);
-            level=level+1;
-            categoryMapper.selectByPrimaryKey(id).setLevel(level);
-        }else {
-            index=list.indexOf(id);
-            level=level+1;
-            categoryMapper.selectByPrimaryKey(id).setLevel(level);
+    @RequestMapping("deleteCategory.do")
+    public String deleteCategory(HttpServletRequest request){
+        String [] cids=request.getParameterValues("cid");
+        System.out.println(Arrays.toString(cids));
+        for (String id:cids
+             ) {
+            categoryMapper.deleteByPrimaryKey(Integer.parseInt(id));
         }
-        list=list.subList(0,index+1);
-        List<Category> idList=categoryMapper.getChildrenCategoryParallel(id);
-        if(idList!=null){
-            for (Category category:idList
-            ) {
-                list.add(category.getId());
-                sort(list,category.getId());
-            }
-        }
-        return list;
+        return "redirect:sort.do?pageNum=1&pageSize=50";
     }
+
+    @RequestMapping("detailCategory.do")
+    public String detailCategory(HttpServletRequest request,Integer catgoryId){
+        Category category=categoryMapper.selectByPrimaryKey(catgoryId);
+        if(category!=null){
+            CategoryVo categoryVo=new CategoryVo();
+            categoryVo.setCategory(category);
+            categoryVo.setParentName(categoryMapper.selectByPrimaryKey(category.getParentId()).getName());
+            request.setAttribute("categoryVo",categoryVo);
+            request.setAttribute("image",VerifyUtil.createImage());
+        }
+        return "category_detail";
+    }
+
+
+
+
 
 
 

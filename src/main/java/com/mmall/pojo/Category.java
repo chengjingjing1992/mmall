@@ -1,7 +1,6 @@
 package com.mmall.pojo;
 
 import java.util.Date;
-import java.util.Objects;
 
 public class Category {
     private Integer id;
@@ -18,7 +17,9 @@ public class Category {
 
     private Date updateTime;
 
-    public Category(Integer id, Integer parentId, String name, Boolean status, Integer sortOrder, Date createTime, Date updateTime) {
+    private Integer level;
+
+    public Category(Integer id, Integer parentId, String name, Boolean status, Integer sortOrder, Date createTime, Date updateTime, Integer level) {
         this.id = id;
         this.parentId = parentId;
         this.name = name;
@@ -26,6 +27,7 @@ public class Category {
         this.sortOrder = sortOrder;
         this.createTime = createTime;
         this.updateTime = updateTime;
+        this.level = level;
     }
 
     public Category() {
@@ -87,17 +89,12 @@ public class Category {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
-    //只比较id
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
-        return Objects.equals(id, category.id);
+
+    public Integer getLevel() {
+        return level;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }

@@ -1,0 +1,143 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>文档管理</title>
+<link href="../css/main.css" rel="stylesheet" type="text/css" />
+<script src="jquery-1.3.2.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div class="mtitle">
+  <h1>数据管理</h1>
+  <span> 跳转:
+    <select class="fs_12" name="123">
+      <option>所有频道</option>
+    </select>
+  </span>
+</div>
+<div class="tform"><button type="button" class="btn1" onClick="location='catalog_do.php?channelid={dede:global.channelid/}&cid={dede:global.cid/}&dopost=addArchives';" >添加数据</button>
+     
+        <button type='button' class="btn1" onClick="location='content_list.php?cid={dede:global.cid/}&mid=0';">全部数据</button>     
+        <button type='button' class="btn1" onClick="location='content_list.php?cid={dede:global.cid/}&mid=<?php echo $cuserLogin->getUserID(); ?>';">我的数据</button>        
+        <button type='button' class="btn1" onClick="location='catalog_main.php';">栏目管理</button>
+        <button type='button' class="btn1" name='bb1' onClick="location='makehtml_list.php?cid={dede:global.cid/}';">更新列表</button>
+        <button type='button' class="btn1" name='bb2' onClick="location='makehtml_archives.php?cid={dede:global.cid/}';">更新数据</button>
+        <button type='button' class="btn1" name='bb1' onClick="location='recycling.php?cid={dede:global.cid/}';">文章回收站</button></div>
+
+<form name="form2">
+  <table class="tlist" >
+    <thead>
+      <tr class="title">
+        <th align="left">ID</th>
+        <th align="left">标题</th>
+        <th align="left">录入时间</th>
+        <th align="left">类目</th>
+        <th align="left">点击</th>
+        <th align="left">HTML</th>
+        <th align="left">权限</th>
+        <th align="left">发布人</th>
+        <th align="right">操作</th>
+      </tr>  
+</thead>
+<tbody>
+<tr>
+      <td >1</td>
+      <td ><input name="arcID" type="checkbox" id="arcID" value="1" class="np">
+        <span id="arc1"> <a href='archives_do.php?aid=1&dopost=editArchives'> <u>dfsa fad</u> </a></span>[<span class="fc_red">图</span>]</td>
+      <td class="fs_11">2009-11-17</td>
+      <td><strong>产品展示</strong></td>
+      <td class="fs_11">2</td>
+      <td>已生成</td>
+      <td>开放浏览</td>
+      <td>admin888</td>
+      <td class="ta_r"><a href="javascript:editArc(1)">编辑</a> | <a href="javascript:viewArc(1)">预览</a></td>
+</tr>
+<tr>
+      <td >1</td>
+      <td ><input name="arcID" type="checkbox" id="arcID" value="1" class="np">
+        <span id="arc1"> <a href='archives_do.php?aid=1&dopost=editArchives'> <u>dfsa fad</u> </a></span>[<span class="fc_red">图</span>]</td>
+      <td class="fs_11">2009-11-17</td>
+      <td><strong>产品展示</strong></td>
+      <td class="fs_11">2</td>
+      <td>已生成</td>
+      <td>开放浏览</td>
+      <td>admin888</td>
+      <td class="ta_r"><a href="javascript:editArc(1)">编辑</a> | <a href="javascript:viewArc(1)">预览</a></td>
+</tr>
+<tr>
+      <td >1</td>
+      <td ><input name="arcID" type="checkbox" id="arcID" value="1" class="np">
+        <span id="arc1"> <a href='archives_do.php?aid=1&dopost=editArchives'> <u>dfsa fad</u> </a></span>[<span class="fc_red">图</span>]</td>
+      <td class="fs_11">2009-11-17</td>
+      <td><strong>产品展示</strong></td>
+      <td class="fs_11">2</td>
+      <td>已生成</td>
+      <td>开放浏览</td>
+      <td>admin888</td>
+      <td class="ta_r"><a href="javascript:editArc(1)">编辑</a> | <a href="javascript:viewArc(1)">预览</a></td>
+</tr>	
+</tbody>    
+<tfoot>
+      <tr>
+        <td colspan="9"><button type="button" class="btn1s" _click="allSelect">全选</button>
+          <button type="button" class="btn1s" _click="unSelect">取消</button>
+          <button type="button" class="btn1s" onClick="javascript:updateArc(0)">更新</button>
+            <button type="button" class="btn1s" onClick="javascript:checkArc(0)">审核</button>
+            <button type="button" class="btn1s" onClick="javascript:adArc(0)">推荐</button>
+            <button type="button" class="btn1s" onClick="javascript:moveArc(0)">移动</button>
+            <button type="button" class="btn1s" onClick="javascript:delArc(0)">删除</button></td>
+      </tr>
+    </tfoot>
+</table>
+<div class="pagelist">
+<span>共 5 页/138条记录 </span><span class="indexPage">首页 
+</span><strong>1</strong>
+<a href="">2</a>
+<a href="">3</a>
+<a href="">4</a>
+<a href="">5</a>
+<a class="nextPage" href="">下页</a> 
+<a class="endPage" href="">末页</a> 
+</div>
+</form>
+<!--  搜索表单  -->
+<form name='form3' action='content_list.php' method='get'>
+<input type='hidden' name='dopost' value='listArchives' />
+<table width='100%'  border='0' cellpadding='1' cellspacing='1' align="center" style="margin-top:8px">
+  <tr bgcolor='#f8f8f8'>
+    <td align='center'>
+      <table border='0' cellpadding='0' cellspacing='0'>
+        <tr>
+          <td width='90' align='center'>请选择类目：</td>
+          <td width='160'>
+          <select name='cid' class="txt" style='width:150'>
+          <option value='0'>选择分类...</option>
+          	{dede:global.optionarr/}
+          </select>
+        </td>
+        <td width='70'>
+          关键字：
+        </td>
+        <td width='160'>
+          	<input name='keyword' type='text' class="txt" style='width:150px' value='' />
+        </td>
+        <td width='110'>
+    		<select name='orderby' class="txt" style='width:80px'>
+            <option value='id'>排序...</option>
+            <option value='pubdate'>发布时间</option>
+            <option value='sortrank'>置顶权值</option>
+            <option value='click'>点击量</option>
+            <option value='postnum'>评论积分</option>
+            <option value='lastpost'>最后评论</option>
+      	</select>
+      </td>
+        <td>
+          <button type="submit" class="btn1">搜索</button>
+        </td>
+       </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

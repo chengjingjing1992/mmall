@@ -8,6 +8,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -92,6 +93,39 @@ public class ICategoryServiceImpl implements ICategoryService {
         }
         return categories;
 
+    }
+
+    //    List list=new ArrayList();
+    int index=0;
+    @Transactional
+    public  List sort(List list,Integer id ){
+        Category category= categoryMapper.selectByPrimaryKey(id);
+        System.out.println("category.toString()="+category.toString());
+        Integer level=category.getLevel();
+        if(id==0){
+            list.add(id);
+
+        }
+        index=list.indexOf(id);
+        list=list.subList(0,index+1);
+        List<Category> idList=categoryMapper.getChildrenCategoryParallel(id);
+        if(idList!=null){
+            level=level+1;
+            for (Category c:idList
+                 ) {
+                c.setLevel(level);
+            }
+
+            for (Category c:idList
+            ) {
+                list.add(c.getId());
+                c.setLevel(level);
+                categoryMapper.updateByPrimaryKeySelective(c);
+                System.out.println("c.getLevel()=="+c.getLevel());
+                sort(list,c.getId());
+            }
+        }
+        return list;
     }
 
 }

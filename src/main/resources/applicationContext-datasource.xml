@@ -75,7 +75,7 @@
         </property>
 
     </bean>
-
+    <!--mapperScannerConfigurer 用于扫描Mapper 接口-->
     <bean name="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.mmall.dao"/>
     </bean>

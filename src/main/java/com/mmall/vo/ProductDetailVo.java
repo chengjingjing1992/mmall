@@ -9,6 +9,7 @@ public class ProductDetailVo {
 
     private Integer  id;
     private Integer categoryId;
+    private String categoryName;
     private String name;
     private String subtitle;
     private String mainImage;
@@ -34,6 +35,14 @@ public class ProductDetailVo {
 
     public Integer getCategoryId() {
         return categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public void setCategoryId(Integer categoryId) {

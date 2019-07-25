@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -19,9 +21,21 @@ public class CartController {
     @Autowired
     private ICartService iCartService;
 
+    @RequestMapping("11.do")
+    public ModelAndView helo(){
+        ModelAndView modelAndView=new ModelAndView("hello");
+        return modelAndView;
+    }
+    @RequestMapping("22.do")
+    public String register(){
+
+        return "register";
+
+    }
+
     @RequestMapping("addCart.do")
     @ResponseBody
-    public ServerResponse addCart(HttpSession session, Integer productId, Integer count){
+    public ServerResponse addCart(HttpSession session, Integer productId, Integer count, HttpServletRequest request){
         User user=(User)session.getAttribute(Const.CURRENT_USER);
         if(user==null){
             return ServerResponse.createByErrorMeg("用户未登录");

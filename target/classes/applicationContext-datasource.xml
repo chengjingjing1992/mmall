@@ -75,7 +75,7 @@
         </property>
 
     </bean>
-
+    <!--mapperScannerConfigurer 用于扫描Mapper 接口-->
     <bean name="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.mmall.dao"/>
     </bean>
@@ -87,6 +87,19 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="rollbackOnCommitFailure" value="true"/>
     </bean>
+
+    <!-- 为什么加这些我也不知道  配置事务特性 ，配置add、delete和update开始的方法，事务传播特性为required -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="init*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="*" read-only="true" />
+        </tx:attributes>
+    </tx:advice>
 
 
 </beans>

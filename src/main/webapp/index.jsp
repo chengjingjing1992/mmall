@@ -1,7 +1,7 @@
 <%@ page language="java"  contentType="text/html; charset=UTF-8" %>
 <html>
 <body>
-<h2>Hello wrld!</h2>
+<h2>!</h2>
 
 springmvc上传文件
 <form name="f1" action="/manage/product/upload.do"  method="post" enctype="multipart/form-data"> <!--上传文件这里选择enctype="multipart/form-data" -->

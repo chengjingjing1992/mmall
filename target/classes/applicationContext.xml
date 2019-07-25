@@ -12,7 +12,13 @@
                 <!--扫描com.mmall 包下的注解
                 这样可以很方便的在类中进行注入
                 -->
-    <context:component-scan base-package="com.mmall" annotation-config="true"/>
+    <!--<context:component-scan base-package="com.mmall" annotation-config="true"/>-->
+
+    <!-- ②自动扫描web包 ,将带有注解的类 纳入spring容器管理 -->
+    <!--这里排除com.mmall 包下的@Controller 注解 和dispatcher-servlet.xml  文件中相对应避免 重复扫描-->
+    <context:component-scan base-package="com.mmall">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
 
     <!--<context:annotation-config/>-->
     <aop:aspectj-autoproxy/>
